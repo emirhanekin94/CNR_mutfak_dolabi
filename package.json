@@ -1,0 +1,19 @@
+{
+  "name": "cnr-mutfak-dolabi",
+  "version": "1.0.0",
+  "description": "ÇNR Ahşap Ürünleri & Mutfak Dolabı Web Sitesi (Ümraniye / İstanbul)",
+  "scripts": {
+    "dev": "npx serve -l 3000",
+    "start": "npx serve -l 3000",
+    "preview": "npx serve -l 3000"
+  },
+  "keywords": [
+    "mutfak-dolabi",
+    "membran-kapak",
+    "lake-kapak",
+    "umraniye",
+    "mobilya-dekorasyon"
+  ],
+  "author": "emirhanekin94",
+  "license": "ISC"
+}

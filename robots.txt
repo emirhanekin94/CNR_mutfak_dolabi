@@ -1,0 +1,25 @@
+# robots.txt for XXX Mutfak & Mobilya (Ümraniye / İstanbul)
+User-agent: *
+Allow: /
+
+# Ajan ve Yapay Zeka Arama Motorları (GEO - Generative Engine Optimization)
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: GPTBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+# XML Site Haritası
+Sitemap: https://istanbulmutfakdolabi.com.tr/sitemap.xml
