@@ -1,5 +1,5 @@
 /**
- * XXX MUTFAK & MOBİLYA - AKILLI AJAN TABANLI ARAMA MOTORU (AGENT SEARCH)
+ * ÇNR MUTFAK & MOBİLYA - AKILLI AJAN TABANLI ARAMA MOTORU (AGENT SEARCH)
  * LLM & Doğal Dil Eşleştirme Uyumlu, Milisaniyelik Client-Side Arama
  */
 
@@ -8,37 +8,44 @@ const SEARCH_DATABASE = [
   {
     title: "Membran Kapak Mutfak Dolabı",
     category: "Mutfak Dolapları",
-    url: "mutfak-dolaplari.html#membran",
-    keywords: ["membran", "pvc kaplama", "country mutfak", "oymalı kapak", "ahşap dokulu", "balon kapak", "neme dayanıklı"],
+    url: "membran-mutfak-dolabi.html",
+    keywords: ["membran", "pvc kaplama", "country mutfak", "oymalı kapak", "ahşap dokulu", "balon kapak", "neme dayanıklı", "ümraniye membran dolap"],
     desc: "MDF üzerine CNC işleme ve vakum pres PVC kaplama. Geniş renk ve desen seçeneği, bütçe dostu ve uzun ömürlü."
   },
   {
     title: "Matplus Kapak Mutfak Dolabı",
     category: "Mutfak Dolapları",
-    url: "mutfak-dolaplari.html#matplus",
-    keywords: ["matplus", "mat kapak", "parmak izi tutmayan", "soft touch", "ipek mat", "modern mutfak"],
+    url: "matplus-mutfak-dolabi.html",
+    keywords: ["matplus", "mat kapak", "parmak izi tutmayan", "soft touch", "ipek mat", "modern mutfak", "leke tutmaz"],
     desc: "Özel nanoteknolojik ipeksi mat yüzey. Parmak izi bırakmaz, çizilmelere karşı yüksek direnç sağlar."
   },
   {
     title: "Akrilik Kapak Mutfak Dolabı",
     category: "Mutfak Dolapları",
-    url: "mutfak-dolaplari.html#akrilik",
-    keywords: ["akrilik", "çizilmez akrilik", "senosan", "ayna parlaklığı", "modern mutfak", "cam parlaklığı"],
+    url: "akrilik-mutfak-dolabi.html",
+    keywords: ["akrilik", "çizilmez akrilik", "senosan", "ayna parlaklığı", "modern mutfak", "cam parlaklığı", "parlak mutfak"],
     desc: "Ultra parlak ve çizilmez Akrilik levha kaplama. Sararmaz, UV ışınlarına ve deterjanlara karşı %100 dayanıklıdır."
   },
   {
     title: "Lake Kapak Mutfak Dolabı",
     category: "Mutfak Dolapları",
-    url: "mutfak-dolaplari.html#lake",
-    keywords: ["lake", "lake boya", "poliüretan boya", "parlak lake", "mat lake", "klasik lake", "özel renk"],
+    url: "lake-mutfak-dolabi.html",
+    keywords: ["lake", "lake boya", "poliüretan boya", "parlak lake", "mat lake", "klasik lake", "özel renk", "lüks mutfak"],
     desc: "Ham MDF üzerine çok katmanlı astar ve poliüretan lake boya. RAL koduna göre sınırsız renk ve pürüzsüz yüzey."
   },
   {
     title: "High Gloss Kapak Mutfak Dolabı",
     category: "Mutfak Dolapları",
-    url: "mutfak-dolaplari.html#highgloss",
-    keywords: ["high gloss", "parlak kapak", "glosspan", "ekonomik parlak", "derin parlaklık"],
+    url: "high-gloss-mutfak-dolabi.html",
+    keywords: ["high gloss", "parlak kapak", "glosspan", "ekonomik parlak", "derin parlaklık", "hayglass"],
     desc: "MDF-Lam üzerine UV lak parlak yüzey. Işıltılı ve modern mutfaklar için ekonomik ve şık kapak çözümü."
+  },
+  {
+    title: "Tüm Mutfak Dolabı Modelleri & İmalat",
+    category: "Mutfak Dolapları",
+    url: "mutfak-dolaplari.html",
+    keywords: ["mutfak dolabı", "imalatçı", "ümraniye mutfak", "özel ölçü dolap", "mutfak dolapları"],
+    desc: "Akrilik, lake, membran ve matplus mutfak dolabı modellerimiz ve atölye imalat avantajlarımız."
   },
 
   // 2. Banyo Dolabı
@@ -113,13 +120,13 @@ const SEARCH_DATABASE = [
     desc: "Modern ve klasik tasarımlı, sessiz manyetik kilitli, çizilmeye dayanıklı lake ve membran oda kapıları."
   },
 
-  // Araçlar & Fiyatlandırma
+  // Teklif & Keşif
   {
-    title: "Metretül Mutfak & Dolap Fiyat Hesaplayıcı",
-    category: "Araçlar",
-    url: "fiyat-hesapla.html",
-    keywords: ["fiyat hesapla", "metretül hesaplama", "mutfak dolabı fiyatı", "gardırop fiyatı", "maliyet", "teklif al"],
-    desc: "Mutfak veya gardırop ölçünüzü girin, kapak ve tezgah türünü seçin, anında yaklaşık bütçenizi hesaplayın."
+    title: "Ücretsiz Keşif & Proje Fiyat Teklifi",
+    category: "Teklif & Keşif",
+    url: "iletisim.html",
+    keywords: ["fiyat", "ücretsiz keşif", "fiyat teklifi", "mutfak dolabı fiyatı", "gardırop fiyatı", "maliyet", "teklif al", "yerinde ölçü"],
+    desc: "Mekanınıza özel yerinde ücretsiz keşif, 3D çizim ve mimar destekli imalat fiyat teklifi alın."
   },
 
   // SSS & Atölye

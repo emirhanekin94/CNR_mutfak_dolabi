@@ -1,5 +1,5 @@
 /**
- * XXX MUTFAK & MOBİLYA - METRETÜL VE PROJE MALİYET HESAPLAYICI
+ * ÇNR MUTFAK & MOBİLYA - METRETÜL VE PROJE MALİYET HESAPLAYICI
  * Ziyaretçilerin doğrudan atölye fiyatlarıyla anında tahmini bütçe almasını sağlar
  */
 

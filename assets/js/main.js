@@ -1,5 +1,5 @@
 /**
- * XXX MUTFAK & MOBİLYA - ANA JAVASCRIPT ÇEKİRDEĞİ
+ * ÇNR MUTFAK & MOBİLYA - ANA JAVASCRIPT ÇEKİRDEĞİ
  * Sıfır Harici Kütüphane, Yüksek Performans, Google PageSpeed 90+ Uyumlu
  */
 

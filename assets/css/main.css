@@ -1,5 +1,5 @@
 /* ==========================================================================
-   XXX MUTFAK & MOBİLYA TASARIM - ULTRA PREMIUM CORE STYLESHEET
+   ÇNR MUTFAK & MOBİLYA TASARIM - ULTRA PREMIUM CORE STYLESHEET
    100% PageSpeed, Zero-Bloat, Pure Vanilla CSS3 Architecture
    ========================================================================== */
 
@@ -169,7 +169,7 @@ ul, ol {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 8px;
+  gap: 10px;
   padding: 13px 26px;
   font-size: 0.95rem;
   font-weight: 600;
@@ -178,6 +178,14 @@ ul, ol {
   transition: all var(--transition-fast);
   text-align: center;
   white-space: nowrap;
+  text-decoration: none;
+}
+
+.btn svg, .btn-icon {
+  width: 19px;
+  height: 19px;
+  flex-shrink: 0;
+  fill: currentColor;
 }
 
 .btn-primary {
@@ -227,9 +235,37 @@ ul, ol {
   box-shadow: 0 6px 22px rgba(37, 211, 102, 0.45);
 }
 
+.btn-phone {
+  background-color: #1e242d;
+  color: #ffffff;
+  border: 1px solid rgba(197, 155, 95, 0.4);
+  font-weight: 700;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.btn-phone:hover {
+  background-color: #2b3340;
+  border-color: var(--color-accent);
+  transform: translateY(-2px);
+}
+
 .btn-sm {
   padding: 8px 16px;
   font-size: 0.85rem;
+  gap: 6px;
+}
+
+.btn-sm svg {
+  width: 15px;
+  height: 15px;
+}
+
+@media (max-width: 600px) {
+  .btn {
+    padding: 12px 18px;
+    font-size: 0.9rem;
+    white-space: normal;
+  }
 }
 
 /* ==========================================================================
@@ -348,88 +384,166 @@ ul, ol {
   width: 100%;
 }
 
-.nav-dropdown {
+/* ==========================================================================
+   NAVBAR DROPDOWN (PREMIUM ATELIER FLOATING MENU)
+   ========================================================================== */
+.nav-item,
+.has-dropdown,
+.main-nav > .nav-dropdown {
   position: relative;
-}
-
-.dropdown-toggle {
-  display: flex;
+  display: inline-flex;
   align-items: center;
-  gap: 4px;
-  cursor: pointer;
 }
 
-.dropdown-menu {
+.has-dropdown > a,
+.dropdown-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.has-dropdown .arrow {
+  font-size: 0.65rem;
+  transition: transform 0.25s ease;
+  display: inline-block;
+  opacity: 0.75;
+}
+
+.has-dropdown:hover .arrow {
+  transform: rotate(180deg);
+  opacity: 1;
+}
+
+/* Floating Dropdown Card (Works with .nav-dropdown or .dropdown-menu) */
+.has-dropdown .nav-dropdown,
+.has-dropdown .dropdown-menu,
+.nav-dropdown .dropdown-menu {
   position: absolute;
-  top: 100%;
-  left: -20px;
-  min-width: 270px;
+  top: calc(100% + 10px);
+  left: 0;
+  min-width: 290px;
   background-color: #ffffff;
-  border-radius: var(--radius-md);
-  box-shadow: var(--shadow-lg);
-  border: 1px solid var(--color-border);
-  padding: 12px;
+  border-radius: 14px;
+  box-shadow: 0 18px 45px -10px rgba(18, 24, 32, 0.2), 0 0 0 1px rgba(0, 0, 0, 0.07);
+  padding: 10px;
   opacity: 0;
   visibility: hidden;
-  transform: translateY(10px);
-  transition: all var(--transition-fast);
-  z-index: 1001;
+  pointer-events: none;
+  transform: translateY(8px);
+  transition: opacity 0.2s cubic-bezier(0.16, 1, 0.3, 1), transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.2s;
+  z-index: 1200;
+  display: flex !important;
+  flex-direction: column;
+  gap: 4px;
 }
 
-.nav-dropdown:hover .dropdown-menu {
+/* Invisible hover bridge to prevent menu closing when mouse travels */
+.has-dropdown .nav-dropdown::before,
+.has-dropdown .dropdown-menu::before,
+.nav-dropdown .dropdown-menu::before {
+  content: '';
+  position: absolute;
+  top: -14px;
+  left: 0;
+  right: 0;
+  height: 14px;
+}
+
+/* Reveal dropdown on hover or focus */
+.has-dropdown:hover > .nav-dropdown,
+.has-dropdown:hover > .dropdown-menu,
+.has-dropdown:focus-within > .nav-dropdown,
+.nav-dropdown:hover > .dropdown-menu {
   opacity: 1;
   visibility: visible;
+  pointer-events: auto;
   transform: translateY(0);
 }
 
+.has-dropdown .dropdown-link,
 .dropdown-menu a {
-  display: flex;
+  display: flex !important;
   align-items: center;
   justify-content: space-between;
-  padding: 9px 14px;
-  border-radius: var(--radius-sm);
+  padding: 10px 14px;
+  border-radius: 8px;
   font-size: 0.88rem;
   font-weight: 500;
   color: var(--color-text-main);
+  text-decoration: none;
+  transition: background-color 0.15s, color 0.15s, transform 0.15s;
+  white-space: nowrap;
 }
 
+.has-dropdown .dropdown-link:hover,
 .dropdown-menu a:hover {
-  background-color: var(--color-bg-alt);
+  background-color: #faf6ed;
   color: var(--color-accent);
+  transform: translateX(3px);
 }
 
 .dropdown-tag {
   font-size: 0.7rem;
   background-color: var(--color-accent-light);
   color: var(--color-accent);
-  padding: 2px 6px;
-  border-radius: 4px;
+  padding: 3px 8px;
+  border-radius: 99px;
   font-weight: 700;
+  letter-spacing: 0.3px;
 }
 
+/* Header Action Buttons */
 .header-actions {
   display: flex;
   align-items: center;
   gap: 12px;
+  flex-shrink: 0;
 }
 
+/* ==========================================================================
+   ARAMA BUTONU (KOMPAKT, ŞIK, ASLA İKİ SATIRA BÖLÜNMEZ)
+   ========================================================================== */
 .search-trigger-btn {
-  background: var(--color-bg-alt);
-  border: 1px solid var(--color-border);
-  padding: 9px 14px;
-  border-radius: var(--radius-full);
-  display: flex;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  padding: 8px 16px;
+  height: 40px;
+  border-radius: 9999px;
+  display: inline-flex;
   align-items: center;
   gap: 8px;
-  font-size: 0.85rem;
+  font-size: 0.86rem;
+  font-weight: 500;
   color: var(--color-text-muted);
   cursor: pointer;
+  white-space: nowrap;
+  flex-shrink: 0;
   transition: all var(--transition-fast);
 }
 
 .search-trigger-btn:hover {
+  background: #ffffff;
   border-color: var(--color-accent);
+  color: var(--color-primary);
+  box-shadow: 0 4px 14px rgba(197, 155, 95, 0.16);
+}
+
+.search-trigger-btn svg {
+  color: var(--color-accent);
+  flex-shrink: 0;
+  transition: transform var(--transition-fast);
+}
+
+.search-trigger-btn:hover svg {
+  transform: scale(1.1);
+}
+
+.search-trigger-btn span {
+  font-size: 0.85rem;
   color: var(--color-text-main);
+  white-space: nowrap;
 }
 
 .mobile-nav-toggle {
@@ -440,15 +554,21 @@ ul, ol {
   color: var(--color-primary);
 }
 
+@media (max-width: 1200px) {
+  .search-trigger-btn {
+    padding: 8px 12px;
+  }
+  .search-trigger-btn span {
+    display: none;
+  }
+}
+
 @media (max-width: 1024px) {
   .main-nav {
     display: none;
   }
   .mobile-nav-toggle {
     display: block;
-  }
-  .search-trigger-btn span {
-    display: none;
   }
 }
 
@@ -641,10 +761,43 @@ ul, ol {
 @media (max-width: 992px) {
   .hero-grid {
     grid-template-columns: 1fr;
-    gap: 40px;
+    gap: 36px;
   }
   .hero-title {
     font-size: 2.3rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero-section {
+    padding: 50px 0 60px 0;
+  }
+  .hero-title {
+    font-size: clamp(1.85rem, 6vw, 2.3rem);
+    line-height: 1.2;
+  }
+  .hero-description {
+    font-size: 1rem;
+    margin-bottom: 24px;
+  }
+  .hero-cta-group {
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 30px;
+  }
+  .hero-cta-group .btn {
+    width: 100%;
+  }
+  .hero-stats-row {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    padding-top: 18px;
+  }
+  .stat-item h4 {
+    font-size: 1.35rem;
+  }
+  .stat-item p {
+    font-size: 0.75rem;
   }
 }
 
@@ -1284,7 +1437,7 @@ ul, ol {
 }
 
 /* ==========================================================================
-   SABİT MOBİL VE WHATSAPP BUTONLARI (HIGH CONVERSION)
+   SABİT MOBİL VE WHATSAPP BUTONLARI (HIGH CONVERSION GOOGLE ADS)
    ========================================================================== */
 .floating-actions {
   position: fixed;
@@ -1297,69 +1450,317 @@ ul, ol {
 }
 
 .float-whatsapp-btn {
-  width: 58px;
-  height: 58px;
+  width: 60px;
+  height: 60px;
   border-radius: var(--radius-full);
   background-color: var(--color-whatsapp);
   color: #ffffff;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.8rem;
-  box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
-  transition: transform var(--transition-fast);
+  box-shadow: 0 8px 25px rgba(37, 211, 102, 0.45);
+  transition: all var(--transition-fast);
+  text-decoration: none;
+  position: relative;
+}
+
+.float-whatsapp-btn svg {
+  width: 32px;
+  height: 32px;
+  fill: currentColor;
 }
 
 .float-whatsapp-btn:hover {
-  transform: scale(1.08);
+  transform: scale(1.08) translateY(-2px);
+  box-shadow: 0 12px 30px rgba(37, 211, 102, 0.6);
 }
 
+.float-whatsapp-tooltip {
+  position: absolute;
+  right: 70px;
+  background: var(--color-primary);
+  color: #ffffff;
+  padding: 6px 12px;
+  border-radius: var(--radius-sm);
+  font-size: 0.8rem;
+  font-weight: 600;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--transition-fast);
+  box-shadow: var(--shadow-md);
+}
+
+.float-whatsapp-btn:hover .float-whatsapp-tooltip {
+  opacity: 1;
+}
+
+/* Mobil Sabit Alt Eylem Çubuğu (Yüksek Dönüşüm - 2 Net Eylem) */
 .mobile-bottom-bar {
   display: none;
   position: fixed;
   bottom: 0;
   left: 0;
   width: 100%;
-  height: 60px;
-  background: #ffffff;
-  border-top: 1px solid var(--color-border);
-  z-index: 998;
-  box-shadow: 0 -4px 15px rgba(0, 0, 0, 0.08);
+  height: 66px;
+  background: rgba(18, 21, 25, 0.98);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  z-index: 9998;
+  box-shadow: 0 -8px 25px rgba(0, 0, 0, 0.35);
+  padding: 8px 12px;
+  gap: 10px;
 }
 
 @media (max-width: 768px) {
   .mobile-bottom-bar {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
   }
+  /* KRİTİK: Mobilde yüzen WhatsApp balonu tamamen gizlenir, tek ve net WhatsApp alt çubukta kalır! */
   .floating-actions {
-    bottom: 74px;
-    right: 18px;
+    display: none !important;
   }
   body {
-    padding-bottom: 60px;
+    padding-bottom: 74px;
   }
 }
 
 .mobile-bottom-btn {
-  display: flex;
-  flex-direction: column;
+  display: inline-flex;
   align-items: center;
   justify-content: center;
-  font-size: 0.72rem;
+  gap: 8px;
+  height: 48px;
+  border-radius: var(--radius-md);
+  font-size: 0.88rem;
+  font-weight: 700;
+  text-decoration: none;
+  transition: transform var(--transition-fast);
+  padding: 0 10px;
+  white-space: nowrap;
+}
+
+.mobile-bottom-btn svg {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+  fill: currentColor;
+}
+
+.mobile-bottom-btn.btn-call-sticky {
+  background: #252b35;
+  color: #ffffff;
+  border: 1px solid rgba(197, 155, 95, 0.5);
+}
+
+.mobile-bottom-btn.btn-call-sticky:active {
+  background: #1b2027;
+}
+
+.mobile-bottom-btn.btn-wa-sticky {
+  background: var(--color-whatsapp);
+  color: #ffffff;
+  box-shadow: 0 4px 14px rgba(37, 211, 102, 0.4);
+}
+
+.mobile-bottom-btn.btn-wa-sticky:active {
+  background: #20bd5a;
+}
+
+/* ==========================================================================
+   RESPONSİVE GRID VE GOOGLE ADS YARDIMCILARI
+   ========================================================================== */
+.grid-2-col {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: 48px;
+  align-items: center;
+}
+
+.grid-2-col.reverse {
+  grid-template-columns: 0.85fr 1.15fr;
+}
+
+@media (max-width: 992px) {
+  .grid-2-col, .grid-2-col.reverse {
+    grid-template-columns: 1fr !important;
+    gap: 32px;
+  }
+}
+
+.categories-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+@media (max-width: 992px) {
+  .categories-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+}
+
+@media (max-width: 600px) {
+  .categories-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+.spec-comparison-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+@media (max-width: 1024px) {
+  .spec-comparison-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+}
+
+@media (max-width: 600px) {
+  .spec-comparison-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* Google Ads Hızlı Teklif Kutusu */
+.ads-lead-box {
+  background: linear-gradient(135deg, rgba(28, 34, 43, 0.98) 0%, rgba(18, 21, 25, 0.98) 100%);
+  border: 1px solid rgba(197, 155, 95, 0.35);
+  border-radius: var(--radius-lg);
+  padding: 32px;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.35);
+  color: #ffffff;
+}
+
+.ads-badge-live {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(37, 211, 102, 0.15);
+  border: 1px solid rgba(37, 211, 102, 0.4);
+  color: #25d366;
+  font-size: 0.78rem;
+  font-weight: 700;
+  padding: 5px 12px;
+  border-radius: var(--radius-full);
+  margin-bottom: 16px;
+}
+
+.ads-pulse-dot {
+  width: 8px;
+  height: 8px;
+  background-color: #25d366;
+  border-radius: 50%;
+  box-shadow: 0 0 8px #25d366;
+  animation: pulse-ring 1.5s infinite;
+}
+
+@keyframes pulse-ring {
+  0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
+  70% { transform: scale(1); box-shadow: 0 0 0 8px rgba(37, 211, 102, 0); }
+  100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+}
+
+/* Güven Rozetleri Çubuğu */
+.trust-badges-bar {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin: 30px 0;
+}
+
+@media (max-width: 900px) {
+  .trust-badges-bar {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 500px) {
+  .trust-badges-bar {
+    grid-template-columns: 1fr;
+  }
+}
+
+.trust-badge-card {
+  background: #ffffff;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: 16px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  box-shadow: var(--shadow-sm);
+}
+
+.trust-badge-icon {
+  width: 42px;
+  height: 42px;
+  background: var(--color-accent-light);
+  color: var(--color-accent);
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.trust-badge-icon svg {
+  width: 22px;
+  height: 22px;
+  fill: currentColor;
+}
+
+.trust-badge-info h5 {
+  font-size: 0.92rem;
+  font-weight: 700;
+  color: var(--color-primary);
+  margin-bottom: 2px;
+}
+
+.trust-badge-info p {
+  font-size: 0.78rem;
+  color: var(--color-text-muted);
+}
+
+/* Renk Kartelası Çipleri */
+.color-swatches-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+  gap: 14px;
+  margin-top: 18px;
+}
+
+.color-swatch-item {
+  background: #ffffff;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: 12px;
+  text-align: center;
+  transition: transform var(--transition-fast);
+}
+
+.color-swatch-item:hover {
+  transform: translateY(-3px);
+  border-color: var(--color-accent);
+}
+
+.color-swatch-circle {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  margin: 0 auto 8px auto;
+  border: 2px solid rgba(0, 0, 0, 0.08);
+}
+
+.color-swatch-name {
+  font-size: 0.8rem;
   font-weight: 600;
-  color: var(--color-text-main);
-  gap: 3px;
-}
-
-.mobile-bottom-btn.highlight {
-  background-color: var(--color-accent);
-  color: #ffffff;
-}
-
-.mobile-bottom-btn.whatsapp {
-  background-color: var(--color-whatsapp);
-  color: #ffffff;
+  color: var(--color-primary);
 }
 
 /* ==========================================================================

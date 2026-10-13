@@ -1,4 +1,4 @@
-# robots.txt for XXX Mutfak & Mobilya (Ümraniye / İstanbul)
+# robots.txt for ÇNR Mutfak & Mobilya (Ümraniye / İstanbul)
 User-agent: *
 Allow: /
 
