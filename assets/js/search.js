@@ -4,6 +4,154 @@
  */
 
 const SEARCH_DATABASE = [
+  {
+    title: "Ümraniye Mutfak Dolabı İmalatı & Keşif",
+    category: "Hizmet Bölgeleri",
+    url: "umraniye-mutfak-dolabi.html",
+    keywords: ["ümraniye", "mutfak dolabı", "keşif", "imalat", "dudullu osb", "çakmak", "yamanevler", "atakent"],
+    desc: "Ümraniye bölgesine özel ölçü mutfak dolabı imalatı, 3D tasarım ve ücretsiz yerinde keşif."
+  },
+  {
+    title: "Ataşehir Mutfak Dolabı İmalatı & Keşif",
+    category: "Hizmet Bölgeleri",
+    url: "atasehir-mutfak-dolabi.html",
+    keywords: ["ataşehir", "mutfak dolabı", "keşif", "imalat", "batı ataşehir", "i̇çerenköy", "küçükbakkalköy", "barbaros"],
+    desc: "Ataşehir bölgesine özel ölçü mutfak dolabı imalatı, 3D tasarım ve ücretsiz yerinde keşif."
+  },
+  {
+    title: "Çekmeköy Mutfak Dolabı İmalatı & Keşif",
+    category: "Hizmet Bölgeleri",
+    url: "cekmekoy-mutfak-dolabi.html",
+    keywords: ["çekmeköy", "mutfak dolabı", "keşif", "imalat", "taşdelen", "alemdağ", "mimar sinan", "merkez mahallesi"],
+    desc: "Çekmeköy bölgesine özel ölçü mutfak dolabı imalatı, 3D tasarım ve ücretsiz yerinde keşif."
+  },
+  {
+    title: "Sancaktepe Mutfak Dolabı İmalatı & Keşif",
+    category: "Hizmet Bölgeleri",
+    url: "sancaktepe-mutfak-dolabi.html",
+    keywords: ["sancaktepe", "mutfak dolabı", "keşif", "imalat", "sarıgazi", "samandıra", "yenidoğan", "abdurrahmangazi"],
+    desc: "Sancaktepe bölgesine özel ölçü mutfak dolabı imalatı, 3D tasarım ve ücretsiz yerinde keşif."
+  },
+  {
+    title: "Kadıköy Mutfak Dolabı İmalatı & Keşif",
+    category: "Hizmet Bölgeleri",
+    url: "kadikoy-mutfak-dolabi.html",
+    keywords: ["kadıköy", "mutfak dolabı", "keşif", "imalat", "bağdat caddesi", "suadiye", "caddebostan", "fenerbahçe"],
+    desc: "Kadıköy bölgesine özel ölçü mutfak dolabı imalatı, 3D tasarım ve ücretsiz yerinde keşif."
+  },
+  {
+    title: "Üsküdar Mutfak Dolabı İmalatı & Keşif",
+    category: "Hizmet Bölgeleri",
+    url: "uskudar-mutfak-dolabi.html",
+    keywords: ["üsküdar", "mutfak dolabı", "keşif", "imalat", "çamlıca", "altunizade", "beylerbeyi", "kandilli"],
+    desc: "Üsküdar bölgesine özel ölçü mutfak dolabı imalatı, 3D tasarım ve ücretsiz yerinde keşif."
+  },
+  {
+    title: "Maltepe Mutfak Dolabı İmalatı & Keşif",
+    category: "Hizmet Bölgeleri",
+    url: "maltepe-mutfak-dolabi.html",
+    keywords: ["maltepe", "mutfak dolabı", "keşif", "imalat", "küçükyalı", "i̇dealtepe", "altayçeşme", "dragos"],
+    desc: "Maltepe bölgesine özel ölçü mutfak dolabı imalatı, 3D tasarım ve ücretsiz yerinde keşif."
+  },
+  {
+    title: "Kartal Mutfak Dolabı İmalatı & Keşif",
+    category: "Hizmet Bölgeleri",
+    url: "kartal-mutfak-dolabi.html",
+    keywords: ["kartal", "mutfak dolabı", "keşif", "imalat", "soğanlık", "yakacık", "atalar", "kordonboyu"],
+    desc: "Kartal bölgesine özel ölçü mutfak dolabı imalatı, 3D tasarım ve ücretsiz yerinde keşif."
+  },
+  {
+    title: "Pendik Mutfak Dolabı İmalatı & Keşif",
+    category: "Hizmet Bölgeleri",
+    url: "pendik-mutfak-dolabi.html",
+    keywords: ["pendik", "mutfak dolabı", "keşif", "imalat", "kurtköy", "yenişehir", "batı mahallesi", "kaynarca"],
+    desc: "Pendik bölgesine özel ölçü mutfak dolabı imalatı, 3D tasarım ve ücretsiz yerinde keşif."
+  },
+  {
+    title: "Beykoz Mutfak Dolabı İmalatı & Keşif",
+    category: "Hizmet Bölgeleri",
+    url: "beykoz-mutfak-dolabi.html",
+    keywords: ["beykoz", "mutfak dolabı", "keşif", "imalat", "kavacık", "acarkent", "göksu evleri", "çavuşbaşı"],
+    desc: "Beykoz bölgesine özel ölçü mutfak dolabı imalatı, 3D tasarım ve ücretsiz yerinde keşif."
+  },
+  {
+    title: "Sultanbeyli Mutfak Dolabı İmalatı & Keşif",
+    category: "Hizmet Bölgeleri",
+    url: "sultanbeyli-mutfak-dolabi.html",
+    keywords: ["sultanbeyli", "mutfak dolabı", "keşif", "imalat", "battalgazi", "hasanpaşa", "mehmet akif", "abdurrahmangazi"],
+    desc: "Sultanbeyli bölgesine özel ölçü mutfak dolabı imalatı, 3D tasarım ve ücretsiz yerinde keşif."
+  },
+  {
+    title: "Tuzla Mutfak Dolabı İmalatı & Keşif",
+    category: "Hizmet Bölgeleri",
+    url: "tuzla-mutfak-dolabi.html",
+    keywords: ["tuzla", "mutfak dolabı", "keşif", "imalat", "postane mahallesi", "yayla", "i̇stasyon", "aydınlı"],
+    desc: "Tuzla bölgesine özel ölçü mutfak dolabı imalatı, 3D tasarım ve ücretsiz yerinde keşif."
+  },
+  {
+    title: "Şile Mutfak Dolabı İmalatı & Keşif",
+    category: "Hizmet Bölgeleri",
+    url: "sile-mutfak-dolabi.html",
+    keywords: ["şile", "mutfak dolabı", "keşif", "imalat", "kumbaba", "merkez", "ağva", "çavuş"],
+    desc: "Şile bölgesine özel ölçü mutfak dolabı imalatı, 3D tasarım ve ücretsiz yerinde keşif."
+  },
+  {
+    title: "Beşiktaş Mutfak Dolabı İmalatı & Keşif",
+    category: "Hizmet Bölgeleri",
+    url: "besiktas-mutfak-dolabi.html",
+    keywords: ["beşiktaş", "mutfak dolabı", "keşif", "imalat", "etiler", "levent", "bebek", "ulus"],
+    desc: "Beşiktaş bölgesine özel ölçü mutfak dolabı imalatı, 3D tasarım ve ücretsiz yerinde keşif."
+  },
+  {
+    title: "Sarıyer Mutfak Dolabı İmalatı & Keşif",
+    category: "Hizmet Bölgeleri",
+    url: "sariyer-mutfak-dolabi.html",
+    keywords: ["sarıyer", "mutfak dolabı", "keşif", "imalat", "zekeriyaköy", "tarabya", "yeniköy", "maslak"],
+    desc: "Sarıyer bölgesine özel ölçü mutfak dolabı imalatı, 3D tasarım ve ücretsiz yerinde keşif."
+  },
+  {
+    title: "Şişli Mutfak Dolabı İmalatı & Keşif",
+    category: "Hizmet Bölgeleri",
+    url: "sisli-mutfak-dolabi.html",
+    keywords: ["şişli", "mutfak dolabı", "keşif", "imalat", "nişantaşı", "teşvikiye", "bomonti", "mecidiyeköy"],
+    desc: "Şişli bölgesine özel ölçü mutfak dolabı imalatı, 3D tasarım ve ücretsiz yerinde keşif."
+  },
+  {
+    title: "Bakırköy Mutfak Dolabı İmalatı & Keşif",
+    category: "Hizmet Bölgeleri",
+    url: "bakirkoy-mutfak-dolabi.html",
+    keywords: ["bakırköy", "mutfak dolabı", "keşif", "imalat", "ataköy (tüm kısımlar)", "florya", "yeşilköy", "yeşilyurt"],
+    desc: "Bakırköy bölgesine özel ölçü mutfak dolabı imalatı, 3D tasarım ve ücretsiz yerinde keşif."
+  },
+  {
+    title: "Başakşehir Mutfak Dolabı İmalatı & Keşif",
+    category: "Hizmet Bölgeleri",
+    url: "basaksehir-mutfak-dolabi.html",
+    keywords: ["başakşehir", "mutfak dolabı", "keşif", "imalat", "bahçeşehir 1. & 2. kısım", "kayaşehir", "başakşehir 1-5. etap", "ziya gökalp"],
+    desc: "Başakşehir bölgesine özel ölçü mutfak dolabı imalatı, 3D tasarım ve ücretsiz yerinde keşif."
+  },
+  {
+    title: "Beylikdüzü Mutfak Dolabı İmalatı & Keşif",
+    category: "Hizmet Bölgeleri",
+    url: "beylikduzu-mutfak-dolabi.html",
+    keywords: ["beylikdüzü", "mutfak dolabı", "keşif", "imalat", "adnan kahveci", "barış mahallesi", "yakuplu & marina", "cumhuriyet"],
+    desc: "Beylikdüzü bölgesine özel ölçü mutfak dolabı imalatı, 3D tasarım ve ücretsiz yerinde keşif."
+  },
+  {
+    title: "Eyüpsultan Mutfak Dolabı İmalatı & Keşif",
+    category: "Hizmet Bölgeleri",
+    url: "eyupsultan-mutfak-dolabi.html",
+    keywords: ["eyüpsultan", "mutfak dolabı", "keşif", "imalat", "göktürk", "kemerburgaz", "alibeyköy", "merkez"],
+    desc: "Eyüpsultan bölgesine özel ölçü mutfak dolabı imalatı, 3D tasarım ve ücretsiz yerinde keşif."
+  },
+  {
+    title: "Kağıthane Mutfak Dolabı İmalatı & Keşif",
+    category: "Hizmet Bölgeleri",
+    url: "kagithane-mutfak-dolabi.html",
+    keywords: ["kağıthane", "mutfak dolabı", "keşif", "imalat", "vadistanbul çevresi", "seyrantepe", "çeliktepe", "gültepe"],
+    desc: "Kağıthane bölgesine özel ölçü mutfak dolabı imalatı, 3D tasarım ve ücretsiz yerinde keşif."
+  },
+
   // 1. Mutfak Dolapları & Alt Kategoriler
   {
     title: "Membran Kapak Mutfak Dolabı",
