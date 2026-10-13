@@ -136,6 +136,24 @@ const SEARCH_DATABASE = [
     url: "iletisim.html",
     keywords: ["ümraniye", "harita", "adres", "telefon", "ücretsiz keşif", "dudullu", "ataşehir", "atölye"],
     desc: "İstanbul Ümraniye imalat atölyemiz, Google harita konumu, telefon ve ücretsiz keşif randevu kanalları."
+  },
+
+  // Hizmet Bölgeleri
+  {
+    title: "Hizmet Bölgelerimiz (Ümraniye, Ataşehir, Çekmeköy, Tüm İstanbul)",
+    category: "Bölgeler",
+    url: "hizmet-bolgeleri.html",
+    keywords: ["bölgeler", "hizmet bölgeleri", "ümraniye", "ataşehir", "çekmeköy", "sancaktepe", "kadıköy", "üsküdar", "maltepe", "kartal", "pendik", "beykoz", "avrupa yakası", "beşiktaş", "sarıyer", "keşif bölgeleri"],
+    desc: "Ümraniye atölyemizden İstanbul Anadolu ve Avrupa yakasındaki tüm ilçelere ücretsiz keşif ve montaj hizmeti."
+  },
+
+  // Blog & Rehber
+  {
+    title: "Mutfak & Mobilya Tasarım Blogu ve Rehberi",
+    category: "Blog & Rehber",
+    url: "blog.html",
+    keywords: ["blog", "rehber", "metretül hesaplama", "membran lake farkı", "matplus nedir", "küçük mutfak fikirleri", "banyo tadilatı süresi", "gardırop seçimi"],
+    desc: "Mutfak dolabı kapak karşılaştırmaları, metretül fiyat hesaplama formülleri ve mimari marangozluk ipuçları."
   }
 ];
 

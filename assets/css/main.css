@@ -60,6 +60,9 @@ html {
   scroll-behavior: smooth;
   font-size: 16px;
   -webkit-text-size-adjust: 100%;
+  overflow-x: hidden;
+  max-width: 100%;
+  width: 100%;
 }
 
 body {
@@ -68,6 +71,9 @@ body {
   color: var(--color-text-main);
   line-height: 1.6;
   overflow-x: hidden;
+  max-width: 100%;
+  width: 100%;
+  position: relative;
   font-weight: 400;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -548,10 +554,25 @@ ul, ol {
 
 .mobile-nav-toggle {
   display: none;
-  background: none;
-  font-size: 1.5rem;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: var(--radius-full);
+  width: 40px;
+  height: 40px;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;
+  line-height: 1;
   cursor: pointer;
   color: var(--color-primary);
+  flex-shrink: 0;
+  transition: all var(--transition-fast);
+}
+
+.mobile-nav-toggle:hover {
+  background: #ffffff;
+  border-color: var(--color-accent);
+  color: var(--color-accent);
 }
 
 @media (max-width: 1200px) {
@@ -568,24 +589,76 @@ ul, ol {
     display: none;
   }
   .mobile-nav-toggle {
-    display: block;
+    display: inline-flex;
   }
 }
 
-/* Mobil Menü Yan Çekmece (Drawer) */
+@media (max-width: 768px) {
+  .header-inner {
+    height: 64px;
+    padding: 0 4px;
+  }
+  /* KRİTİK: Mobilde header'daki hantal WhatsApp butonunu gizle; altta zaten sabit eylem çubuğu var */
+  .header-actions .btn-whatsapp,
+  .header-actions .desktop-only-btn {
+    display: none !important;
+  }
+  .site-logo {
+    max-width: calc(100% - 95px);
+    overflow: hidden;
+  }
+  .site-logo .brand-name {
+    font-size: 1.25rem;
+    white-space: nowrap;
+    line-height: 1.1;
+  }
+  .site-logo .brand-tagline {
+    font-size: 0.65rem;
+    letter-spacing: 0.8px;
+    white-space: nowrap;
+  }
+  .header-actions {
+    gap: 8px;
+    flex-shrink: 0;
+  }
+  .search-trigger-btn {
+    width: 38px;
+    height: 38px;
+    padding: 0;
+    justify-content: center;
+  }
+  .search-trigger-btn span {
+    display: none !important;
+  }
+  .mobile-nav-toggle {
+    width: 38px;
+    height: 38px;
+    font-size: 1.3rem;
+  }
+}
+
+/* ==========================================================================
+   MOBİL MENÜ YAN ÇEKMECE (DRAWER - AKICI, KAYDIRILABİLİR, TÜM SAYFALARDA BİREBİR)
+   ========================================================================== */
 .mobile-drawer {
   position: fixed;
   top: 0;
   right: -100%;
-  width: 85%;
-  max-width: 360px;
-  height: 100vh;
+  width: 86%;
+  max-width: 340px;
+  height: 100%;
+  height: 100dvh;
+  max-height: 100dvh;
   background-color: #ffffff;
   z-index: 2000;
-  box-shadow: var(--shadow-lg);
-  padding: 24px;
-  overflow-y: auto;
+  box-shadow: -10px 0 35px rgba(0, 0, 0, 0.25);
+  padding: 20px 20px 90px 20px;
+  overflow-y: auto !important;
+  -webkit-overflow-scrolling: touch !important;
+  overscroll-behavior: contain;
   transition: right 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  display: flex;
+  flex-direction: column;
 }
 
 .mobile-drawer.active {
@@ -598,7 +671,9 @@ ul, ol {
   left: 0;
   width: 100vw;
   height: 100vh;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
   z-index: 1999;
   opacity: 0;
   visibility: hidden;
@@ -615,43 +690,79 @@ ul, ol {
   justify-content: space-between;
   align-items: center;
   border-bottom: 1px solid var(--color-border);
-  padding-bottom: 16px;
-  margin-bottom: 20px;
+  padding-bottom: 14px;
+  margin-bottom: 16px;
+  flex-shrink: 0;
 }
 
 .drawer-close {
-  background: none;
-  font-size: 1.8rem;
+  background: #f1ece4;
+  border: none;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  font-size: 1.5rem;
+  line-height: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   cursor: pointer;
-  color: var(--color-text-muted);
+  color: var(--color-primary);
+  transition: background var(--transition-fast);
+}
+
+.drawer-close:hover {
+  background: var(--color-border);
 }
 
 .mobile-menu-list {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 4px;
+  flex: 1;
 }
 
 .mobile-menu-item a {
-  display: block;
-  font-size: 1.05rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.98rem;
   font-weight: 600;
-  padding: 10px 0;
-  border-bottom: 1px solid #f1ece4;
+  padding: 11px 10px;
+  border-radius: var(--radius-sm);
+  border-bottom: 1px solid #f6f3ee;
+  color: var(--color-primary);
+  text-decoration: none;
+  transition: all var(--transition-fast);
+}
+
+.mobile-menu-item a:hover,
+.mobile-menu-item a:active {
+  background-color: #faf6ed;
+  color: var(--color-accent);
 }
 
 .mobile-sub-menu {
-  padding-left: 16px;
-  margin-top: 6px;
+  padding-left: 12px;
+  margin: 4px 0 8px 0;
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 3px;
+  border-left: 2px solid rgba(197, 155, 95, 0.35);
 }
 
 .mobile-sub-menu a {
-  font-size: 0.9rem;
+  font-size: 0.88rem;
   font-weight: 500;
+  padding: 7px 10px;
+  border-bottom: none;
   color: var(--color-text-muted);
+}
+
+.mobile-sub-menu a:hover {
+  color: var(--color-accent);
+  background-color: #faf6ed;
+}
   border-bottom: none;
 }
 
@@ -1635,6 +1746,249 @@ ul, ol {
   padding: 32px;
   box-shadow: 0 15px 40px rgba(0, 0, 0, 0.35);
   color: #ffffff;
+}
+
+.ads-lead-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 30px;
+  align-items: center;
+}
+
+@media (max-width: 992px) {
+  .ads-lead-grid {
+    grid-template-columns: 1fr !important;
+    gap: 20px;
+  }
+}
+
+/* 4'lü Üst Özellikler Bandı (Mobil Uyumlu) */
+.features-bar-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  width: 100%;
+}
+
+.feature-pill-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 14px;
+  background: #ffffff;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+  text-align: left;
+}
+
+.feature-pill-item .feature-pill-icon {
+  font-size: 1.7rem;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.feature-pill-item h4 {
+  font-size: 0.92rem;
+  font-weight: 700;
+  color: var(--color-primary);
+  margin-bottom: 2px;
+}
+
+.feature-pill-item p {
+  font-size: 0.78rem;
+  color: var(--color-text-muted);
+}
+
+@media (max-width: 992px) {
+  .features-bar-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 576px) {
+  .features-bar-grid {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+}
+
+/* ==========================================================================
+   BLOG & REHBER SAYFASI STİLLERİ
+   ========================================================================== */
+.blog-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+}
+
+@media (max-width: 992px) {
+  .blog-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+}
+
+@media (max-width: 600px) {
+  .blog-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+.blog-card {
+  background: #ffffff;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.blog-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+  border-color: var(--color-accent);
+}
+
+.blog-card-img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+}
+
+.blog-card-body {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.blog-card-badge {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--color-accent);
+  background: var(--color-accent-light);
+  padding: 4px 10px;
+  border-radius: var(--radius-full);
+  margin-bottom: 12px;
+  width: fit-content;
+}
+
+.blog-card-title {
+  font-family: var(--font-serif);
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--color-primary);
+  margin-bottom: 10px;
+  line-height: 1.35;
+}
+
+.blog-card-excerpt {
+  font-size: 0.92rem;
+  color: var(--color-text-muted);
+  line-height: 1.6;
+  margin-bottom: 18px;
+  flex: 1;
+}
+
+.blog-card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-top: 1px solid var(--color-border);
+  padding-top: 14px;
+  font-size: 0.82rem;
+  color: var(--color-text-light);
+}
+
+/* ==========================================================================
+   HİZMET BÖLGELERİ SAYFASI STİLLERİ
+   ========================================================================== */
+.regions-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+@media (max-width: 992px) {
+  .regions-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+}
+
+@media (max-width: 600px) {
+  .regions-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+.region-card {
+  background: #ffffff;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: 24px;
+  box-shadow: var(--shadow-sm);
+  transition: transform var(--transition-fast);
+}
+
+.region-card:hover {
+  transform: translateY(-3px);
+  border-color: var(--color-accent);
+  box-shadow: var(--shadow-md);
+}
+
+.region-card-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+
+.region-card-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-md);
+  background: var(--color-accent-light);
+  color: var(--color-accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;
+  flex-shrink: 0;
+}
+
+.region-card-title {
+  font-family: var(--font-serif);
+  font-size: 1.25rem;
+  color: var(--color-primary);
+  font-weight: 700;
+}
+
+.region-badge-fast {
+  font-size: 0.72rem;
+  background: rgba(37, 211, 102, 0.15);
+  color: #15803d;
+  padding: 3px 8px;
+  border-radius: 99px;
+  font-weight: 700;
+}
+
+.neighborhood-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 14px 0;
+}
+
+.neighborhood-tag {
+  font-size: 0.78rem;
+  background: #f8fafc;
+  color: var(--color-text-main);
+  padding: 4px 9px;
+  border-radius: 4px;
+  border: 1px solid #e2e8f0;
 }
 
 .ads-badge-live {
