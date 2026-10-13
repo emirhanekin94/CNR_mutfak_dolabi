@@ -763,16 +763,14 @@ ul, ol {
   color: var(--color-accent);
   background-color: #faf6ed;
 }
-  border-bottom: none;
-}
 
 /* ==========================================================================
    HERO / GİRİŞ BÖLÜMÜ
    ========================================================================== */
 .hero-section {
   position: relative;
-  background: linear-gradient(135deg, #121519 0%, #1c222b 60%, #151a21 100%);
-  color: #ffffff;
+  background: linear-gradient(135deg, #121519 0%, #1c222b 60%, #151a21 100%) !important;
+  color: #ffffff !important;
   padding: 90px 0 110px 0;
   overflow: hidden;
 }
