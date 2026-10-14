@@ -1,5 +1,5 @@
 /**
- * ÇNR MUTFAK & MOBİLYA - METRETÜL VE PROJE MALİYET HESAPLAYICI
+ * MUTFAK DOLABINIZ - METRETÜL VE PROJE MALİYET HESAPLAYICI
  * Ziyaretçilerin doğrudan atölye fiyatlarıyla anında tahmini bütçe almasını sağlar
  */
 
@@ -89,7 +89,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 Ümraniye atölyenizden detaylı 3D çizim ve kesin keşif randevusu almak istiyorum.`;
 
-      whatsappQuoteBtn.href = `https://wa.me/905320000000?text=${encodeURIComponent(text)}`;
+      whatsappQuoteBtn.href = `https://wa.me/905544596979?text=${encodeURIComponent(text)}`;
     }
   }
 

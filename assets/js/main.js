@@ -1,5 +1,5 @@
 /**
- * ÇNR MUTFAK & MOBİLYA - ANA JAVASCRIPT ÇEKİRDEĞİ
+ * MUTFAK DOLABINIZ - ANA JAVASCRIPT ÇEKİRDEĞİ
  * Sıfır Harici Kütüphane, Yüksek Performans, Google PageSpeed 90+ Uyumlu
  */
 
@@ -81,7 +81,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }
       
       // Standart şirket WhatsApp hattı numarası
-      const phone = "905320000000"; // İletişim numarasıyla güncellenebilir
+      const phone = "905544596979"; // İletişim numarasıyla güncellenebilir
       const url = `https://wa.me/${phone}?text=${encodeURIComponent(text)}`;
       window.open(url, '_blank');
     });
