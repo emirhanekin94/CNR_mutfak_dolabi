@@ -88,7 +88,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // 5. Basit & Hızlı Görsel Lightbox (Büyük Boyut İnceleme)
-  const galleryItems = document.querySelectorAll('.media-slot img');
+  const galleryItems = document.querySelectorAll('.media-slot img, .live-gallery-media img');
   if (galleryItems.length > 0) {
     const lightboxModal = document.createElement('div');
     lightboxModal.className = 'lightbox-modal';
@@ -119,5 +119,51 @@ document.addEventListener('DOMContentLoaded', () => {
     lightboxModal.addEventListener('click', () => {
       lightboxModal.style.display = 'none';
     });
+  }
+
+  // 6. Hero Görsel Seçici (Thumbnail Switcher & Canlı Önizleme)
+  const heroThumbs = document.querySelectorAll('.hero-thumb-btn');
+  const heroMainImg = document.getElementById('heroMainImage');
+  const heroCaptionTitle = document.getElementById('heroCaptionTitle');
+  const heroCaptionTag = document.getElementById('heroCaptionTag');
+
+  if (heroThumbs.length > 0 && heroMainImg) {
+    let currentIdx = 0;
+    let autoPlayTimer = null;
+
+    function switchHeroImage(btn) {
+      heroThumbs.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      const newSrc = btn.getAttribute('data-src');
+      const newTitle = btn.getAttribute('data-title');
+      const newTag = btn.getAttribute('data-tag');
+
+      if (newSrc && heroMainImg.getAttribute('src') !== newSrc) {
+        heroMainImg.style.opacity = '0.4';
+        heroMainImg.style.transition = 'opacity 0.25s ease';
+        setTimeout(() => {
+          heroMainImg.src = newSrc;
+          if (heroCaptionTitle && newTitle) heroCaptionTitle.textContent = newTitle;
+          if (heroCaptionTag && newTag) heroCaptionTag.textContent = newTag;
+          heroMainImg.style.opacity = '1';
+        }, 150);
+      }
+    }
+
+    heroThumbs.forEach((btn, idx) => {
+      btn.addEventListener('click', () => {
+        currentIdx = idx;
+        switchHeroImage(btn);
+        // Kullanıcı tıkladığında otomatik dönmeyi durdur
+        if (autoPlayTimer) clearInterval(autoPlayTimer);
+      });
+    });
+
+    // Otomatik hafif geçiş (Kullanıcı müdahale etmediğinde her 6 saniyede bir sonraki gerçek kareye geçer)
+    autoPlayTimer = setInterval(() => {
+      currentIdx = (currentIdx + 1) % heroThumbs.length;
+      switchHeroImage(heroThumbs[currentIdx]);
+    }, 6000);
   }
 });
