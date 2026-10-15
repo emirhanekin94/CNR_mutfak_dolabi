@@ -835,7 +835,7 @@ ul, ol {
   display: grid;
   grid-template-columns: 1.05fr 0.95fr;
   gap: 48px;
-  align-items: center;
+  align-items: start;
   position: relative;
   z-index: 2;
 }
@@ -2639,9 +2639,6 @@ ul, ol {
   0% { transform: scale(0.6); opacity: 0.9; }
   100% { transform: scale(2.2); opacity: 0; }
 }
-  70% { transform: scale(1); box-shadow: 0 0 0 8px rgba(37, 211, 102, 0); }
-  100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
-}
 
 /* Güven Rozetleri Çubuğu */
 .trust-badges-bar {
@@ -3469,7 +3466,7 @@ ul, ol {
 
 .blog-card-meta {
   font-size: 0.82rem;
-  color: #718096;
+  color: var(--color-text-muted);
   margin-bottom: 10px;
   display: flex;
   align-items: center;
