@@ -283,10 +283,10 @@ ul, ol {
    ========================================================================== */
 .top-bar {
   background-color: var(--color-bg-dark);
-  color: var(--color-text-light);
-  font-size: 0.85rem;
+  color: #f8fafc;
+  font-size: 0.86rem;
   padding: 8px 0;
-  border-bottom: 1px solid var(--color-border-dark);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .top-bar-inner {
@@ -300,18 +300,25 @@ ul, ol {
   gap: 20px;
 }
 
-.top-bar-links a {
+.top-bar-links a,
+.top-bar-link {
   display: flex;
   align-items: center;
   gap: 6px;
+  color: #ffffff !important;
+  font-weight: 500;
+  text-decoration: none;
+  transition: color var(--transition-fast), transform var(--transition-fast);
 }
 
-.top-bar-links a:hover {
-  color: var(--color-accent);
+.top-bar-links a:hover,
+.top-bar-link:hover {
+  color: #e6be8a !important;
+  transform: translateY(-1px);
 }
 
 .top-badge {
-  color: var(--color-accent);
+  color: #dcb375;
   font-weight: 600;
   display: flex;
   align-items: center;
@@ -956,7 +963,7 @@ ul, ol {
   box-shadow: 0 25px 65px rgba(0, 0, 0, 0.65);
   border: 1px solid rgba(255, 255, 255, 0.12);
   background: #181d24;
-  aspect-ratio: 16 / 9;
+  aspect-ratio: 4 / 3;
 }
 
 .hero-visual-frame picture {
