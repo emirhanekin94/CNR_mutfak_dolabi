@@ -320,56 +320,93 @@ function normalizeTR(str) {
     .trim();
 }
 
-// Arama Motoru Başlatma
+// Arama Motoru Başlatma (Sıfır Reflow - Tıklama / Boşta Lazy Initialization)
 document.addEventListener('DOMContentLoaded', () => {
-  // Arama Modalı Elementlerini Oluşturma
-  const modal = document.createElement('div');
-  modal.className = 'search-modal-backdrop';
-  modal.id = 'agentSearchModal';
-  modal.innerHTML = `
-    <div class="search-modal-card">
-      <div class="search-input-wrapper">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--color-accent, #c59b5f)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
-        <input type="text" class="search-input-field" id="agentSearchInput" placeholder="Model, malzeme, ilçe veya katalog arayın... (Örn: lake, membran, giyinme odası, beşiktaş)" autocomplete="off">
-        <button class="search-close-btn" id="closeSearchModal" aria-label="Aramayı Kapat">&times;</button>
-      </div>
-
-      <!-- Akıllı Filtre Hapları (Filter Chips) -->
-      <div class="search-filter-chips" style="display: flex; gap: 8px; padding: 10px 20px; overflow-x: auto; background: #fafbfc; border-bottom: 1px solid #edf2f7; -webkit-overflow-scrolling: touch;">
-        <button type="button" class="search-chip active" data-filter="" style="padding: 4px 12px; border-radius: 99px; font-size: 0.78rem; font-weight: 600; border: 1px solid #e2e8f0; background: #ffffff; cursor: pointer; white-space: nowrap;">✨ Tümü</button>
-        <button type="button" class="search-chip" data-filter="Mutfak" style="padding: 4px 12px; border-radius: 99px; font-size: 0.78rem; font-weight: 600; border: 1px solid #e2e8f0; background: #ffffff; cursor: pointer; white-space: nowrap;">🍳 Mutfak</button>
-        <button type="button" class="search-chip" data-filter="Banyo" style="padding: 4px 12px; border-radius: 99px; font-size: 0.78rem; font-weight: 600; border: 1px solid #e2e8f0; background: #ffffff; cursor: pointer; white-space: nowrap;">🚿 Banyo</button>
-        <button type="button" class="search-chip" data-filter="Gardırop" style="padding: 4px 12px; border-radius: 99px; font-size: 0.78rem; font-weight: 600; border: 1px solid #e2e8f0; background: #ffffff; cursor: pointer; white-space: nowrap;">🚪 Gardırop</button>
-        <button type="button" class="search-chip" data-filter="Kapı" style="padding: 4px 12px; border-radius: 99px; font-size: 0.78rem; font-weight: 600; border: 1px solid #e2e8f0; background: #ffffff; cursor: pointer; white-space: nowrap;">🚪 Kapı</button>
-        <button type="button" class="search-chip" data-filter="E-Katalog" style="padding: 4px 12px; border-radius: 99px; font-size: 0.78rem; font-weight: 600; border: 1px solid #c59b5f; color: #9c7333; background: #fdf9f3; cursor: pointer; white-space: nowrap;">📖 Mutfak Dolabınız PDF Katalog</button>
-        <button type="button" class="search-chip" data-filter="Hizmet Bölgeleri" style="padding: 4px 12px; border-radius: 99px; font-size: 0.78rem; font-weight: 600; border: 1px solid #e2e8f0; background: #ffffff; cursor: pointer; white-space: nowrap;">📍 İlçeler</button>
-      </div>
-
-      <div class="search-results-list" id="searchResultsList">
-        <div style="padding: 24px; text-align: center; color: #718096;">
-          <p style="font-weight: 600; color: #2d3748; margin-bottom: 6px;">Atölye Arama Ajanı Hazır</p>
-          <p style="font-size: 0.85rem;">Membran, lake, akrilik, giyinme odası veya hizmet verdiğimiz ilçeleri yazarak arayabilirsiniz.</p>
-        </div>
-      </div>
-    </div>
-  `;
-  document.body.appendChild(modal);
-
-  const searchInput = document.getElementById('agentSearchInput');
-  const resultsContainer = document.getElementById('searchResultsList');
-  const closeBtn = document.getElementById('closeSearchModal');
-  const chips = modal.querySelectorAll('.search-chip');
+  let modal = null;
+  let searchInput = null;
+  let resultsContainer = null;
+  let closeBtn = null;
   let currentCategoryFilter = '';
 
+  function ensureModalCreated() {
+    if (modal) return;
+    modal = document.createElement('div');
+    modal.className = 'search-modal-backdrop';
+    modal.id = 'agentSearchModal';
+    modal.innerHTML = `
+      <div class="search-modal-card">
+        <div class="search-input-wrapper">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--color-accent, #875d1f)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+          <input type="text" class="search-input-field" id="agentSearchInput" placeholder="Model, malzeme, ilçe veya katalog arayın... (Örn: lake, membran, giyinme odası, beşiktaş)" autocomplete="off">
+          <button class="search-close-btn" id="closeSearchModal" aria-label="Aramayı Kapat">&times;</button>
+        </div>
+
+        <!-- Akıllı Filtre Hapları (Filter Chips) -->
+        <div class="search-filter-chips" style="display: flex; gap: 8px; padding: 10px 20px; overflow-x: auto; background: #fafbfc; border-bottom: 1px solid #edf2f7; -webkit-overflow-scrolling: touch;">
+          <button type="button" class="search-chip active" data-filter="" style="padding: 4px 12px; border-radius: 99px; font-size: 0.78rem; font-weight: 600; border: 1px solid #e2e8f0; background: #ffffff; cursor: pointer; white-space: nowrap;">✨ Tümü</button>
+          <button type="button" class="search-chip" data-filter="Mutfak" style="padding: 4px 12px; border-radius: 99px; font-size: 0.78rem; font-weight: 600; border: 1px solid #e2e8f0; background: #ffffff; cursor: pointer; white-space: nowrap;">🍳 Mutfak</button>
+          <button type="button" class="search-chip" data-filter="Banyo" style="padding: 4px 12px; border-radius: 99px; font-size: 0.78rem; font-weight: 600; border: 1px solid #e2e8f0; background: #ffffff; cursor: pointer; white-space: nowrap;">🚿 Banyo</button>
+          <button type="button" class="search-chip" data-filter="Gardırop" style="padding: 4px 12px; border-radius: 99px; font-size: 0.78rem; font-weight: 600; border: 1px solid #e2e8f0; background: #ffffff; cursor: pointer; white-space: nowrap;">🚪 Gardırop</button>
+          <button type="button" class="search-chip" data-filter="Kapı" style="padding: 4px 12px; border-radius: 99px; font-size: 0.78rem; font-weight: 600; border: 1px solid #e2e8f0; background: #ffffff; cursor: pointer; white-space: nowrap;">🚪 Kapı</button>
+          <button type="button" class="search-chip" data-filter="E-Katalog" style="padding: 4px 12px; border-radius: 99px; font-size: 0.78rem; font-weight: 600; border: 1px solid #875d1f; color: #875d1f; background: #fdf9f3; cursor: pointer; white-space: nowrap;">📖 Mutfak Dolabınız PDF Katalog</button>
+          <button type="button" class="search-chip" data-filter="Hizmet Bölgeleri" style="padding: 4px 12px; border-radius: 99px; font-size: 0.78rem; font-weight: 600; border: 1px solid #e2e8f0; background: #ffffff; cursor: pointer; white-space: nowrap;">📍 İlçeler</button>
+        </div>
+
+        <div class="search-results-list" id="searchResultsList">
+          <div style="padding: 24px; text-align: center; color: #718096;">
+            <p style="font-weight: 600; color: #2d3748; margin-bottom: 6px;">Atölye Arama Ajanı Hazır</p>
+            <p style="font-size: 0.85rem;">Membran, lake, akrilik, giyinme odası veya hizmet verdiğimiz ilçeleri yazarak arayabilirsiniz.</p>
+          </div>
+        </div>
+      </div>
+    `;
+    document.body.appendChild(modal);
+
+    searchInput = document.getElementById('agentSearchInput');
+    resultsContainer = document.getElementById('searchResultsList');
+    closeBtn = document.getElementById('closeSearchModal');
+    const chips = modal.querySelectorAll('.search-chip');
+
+    if (closeBtn) closeBtn.addEventListener('click', closeSearch);
+
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) closeSearch();
+    });
+
+    chips.forEach(chip => {
+      chip.addEventListener('click', () => {
+        chips.forEach(c => {
+          c.classList.remove('active');
+          c.style.background = '#ffffff';
+          c.style.color = '#2d3748';
+        });
+        chip.classList.add('active');
+        chip.style.background = '#1e242e';
+        chip.style.color = '#ffffff';
+        currentCategoryFilter = chip.getAttribute('data-filter') || '';
+        renderSearchResults(searchInput.value);
+      });
+    });
+
+    if (searchInput) {
+      searchInput.addEventListener('input', (e) => {
+        renderSearchResults(e.target.value);
+      });
+    }
+  }
+
   function openSearch() {
+    ensureModalCreated();
     modal.classList.add('active');
-    setTimeout(() => searchInput.focus(), 80);
+    setTimeout(() => { if (searchInput) searchInput.focus(); }, 80);
     document.body.style.overflow = 'hidden';
   }
 
   function closeSearch() {
-    modal.classList.remove('active');
-    document.body.style.overflow = '';
+    if (modal) {
+      modal.classList.remove('active');
+      document.body.style.overflow = '';
+    }
   }
 
   // Tetikleyici Butonlar (Header Arama Butonu)
@@ -379,39 +416,27 @@ document.addEventListener('DOMContentLoaded', () => {
     openSearch();
   }));
 
-  if (closeBtn) closeBtn.addEventListener('click', closeSearch);
-
-  // Modal Dışına Tıklama
-  modal.addEventListener('click', (e) => {
-    if (e.target === modal) closeSearch();
-  });
-
   // Klavye Kısayolu (Ctrl+K veya Cmd+K veya Escape)
   document.addEventListener('keydown', (e) => {
     if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
       e.preventDefault();
-      modal.classList.contains('active') ? closeSearch() : openSearch();
+      if (modal && modal.classList.contains('active')) {
+        closeSearch();
+      } else {
+        openSearch();
+      }
     }
-    if (e.key === 'Escape' && modal.classList.contains('active')) {
+    if (e.key === 'Escape' && modal && modal.classList.contains('active')) {
       closeSearch();
     }
   });
 
-  // Kategori Filtre Hapı Tıklamaları
-  chips.forEach(chip => {
-    chip.addEventListener('click', () => {
-      chips.forEach(c => {
-        c.classList.remove('active');
-        c.style.background = '#ffffff';
-        c.style.color = '#2d3748';
-      });
-      chip.classList.add('active');
-      chip.style.background = '#1e242e';
-      chip.style.color = '#ffffff';
-      currentCategoryFilter = chip.getAttribute('data-filter') || '';
-      renderSearchResults(searchInput.value);
-    });
-  });
+  // Sayfa tamamen açıldıktan sonra boşta ön yükle (Idle preload)
+  if ('requestIdleCallback' in window) {
+    window.requestIdleCallback(() => ensureModalCreated(), { timeout: 3000 });
+  } else {
+    setTimeout(ensureModalCreated, 2000);
+  }
 
   // Arama Ajanı Motoru
   function renderSearchResults(rawQuery) {

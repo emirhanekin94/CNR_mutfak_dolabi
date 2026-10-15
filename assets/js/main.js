@@ -87,37 +87,44 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // 5. Basit & Hızlı Görsel Lightbox (Büyük Boyut İnceleme)
+  // 5. Basit & Hızlı Görsel Lightbox (Sıfır Reflow - İlk Tıklamada Lazy Yükleme)
   const galleryItems = document.querySelectorAll('.media-slot img, .live-gallery-media img');
   if (galleryItems.length > 0) {
-    const lightboxModal = document.createElement('div');
-    lightboxModal.className = 'lightbox-modal';
-    lightboxModal.style.cssText = `
-      position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
-      background: rgba(0,0,0,0.88); z-index: 5000; display: none;
-      align-items: center; justify-content: center; padding: 20px;
-      backdrop-filter: blur(5px); cursor: zoom-out;
-    `;
-    const lightboxImg = document.createElement('img');
-    lightboxImg.style.cssText = `
-      max-width: 90%; max-height: 85vh; border-radius: 8px;
-      box-shadow: 0 10px 40px rgba(0,0,0,0.5); object-fit: contain;
-    `;
-    lightboxModal.appendChild(lightboxImg);
-    document.body.appendChild(lightboxModal);
+    let lightboxModal = null;
+    let lightboxImg = null;
+
+    function ensureLightbox() {
+      if (lightboxModal) return;
+      lightboxModal = document.createElement('div');
+      lightboxModal.className = 'lightbox-modal';
+      lightboxModal.style.cssText = `
+        position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+        background: rgba(0,0,0,0.88); z-index: 5000; display: none;
+        align-items: center; justify-content: center; padding: 20px;
+        backdrop-filter: blur(5px); cursor: zoom-out;
+      `;
+      lightboxImg = document.createElement('img');
+      lightboxImg.style.cssText = `
+        max-width: 90%; max-height: 85vh; border-radius: 8px;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.5); object-fit: contain;
+      `;
+      lightboxModal.appendChild(lightboxImg);
+      document.body.appendChild(lightboxModal);
+
+      lightboxModal.addEventListener('click', () => {
+        lightboxModal.style.display = 'none';
+      });
+    }
 
     galleryItems.forEach(img => {
       img.style.cursor = 'zoom-in';
       img.addEventListener('click', () => {
         if (img.src && !img.src.includes('data:image/svg')) {
+          ensureLightbox();
           lightboxImg.src = img.src;
           lightboxModal.style.display = 'flex';
         }
       });
-    });
-
-    lightboxModal.addEventListener('click', () => {
-      lightboxModal.style.display = 'none';
     });
   }
 });
