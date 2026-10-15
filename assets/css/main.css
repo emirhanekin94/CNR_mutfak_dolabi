@@ -452,7 +452,8 @@ ul, ol {
 .has-dropdown .dropdown-menu,
 .nav-dropdown .dropdown-menu {
   position: absolute;
-  top: calc(100% + 10px);
+  top: 100%;
+  margin-top: 22px;
   left: 0;
   min-width: 290px;
   background-color: #ffffff;
@@ -476,10 +477,10 @@ ul, ol {
 .nav-dropdown .dropdown-menu::before {
   content: '';
   position: absolute;
-  top: -14px;
+  top: -26px;
   left: 0;
   right: 0;
-  height: 14px;
+  height: 26px;
 }
 
 /* Reveal dropdown on hover or focus */
