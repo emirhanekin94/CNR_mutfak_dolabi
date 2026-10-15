@@ -81,7 +81,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }
       
       // Standart şirket WhatsApp hattı numarası
-      const phone = "905544596979"; // İletişim numarasıyla güncellenebilir
+      const phone = "905336173555"; // İletişim numarasıyla güncellenebilir
       const url = `https://wa.me/${phone}?text=${encodeURIComponent(text)}`;
       window.open(url, '_blank');
     });

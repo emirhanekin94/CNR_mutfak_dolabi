@@ -44,7 +44,7 @@ console.log('--- Sayfalara Gerçek Kullanıcı Görselleri ve Videoları Entegre
             <li>✓ Kadife bölmeli takı, saat ve gözlük çekmeceleri</li>
             <li>✓ Ümraniye fabrikamızdan doğrudan aracısız teslimat</li>
           </ul>
-          <a href="https://wa.me/905320000000?text=Giyinme%20odasi%20icin%20olcu%20gondermek%20istiyorum." target="_blank" class="btn btn-whatsapp">
+          <a href="https://wa.me/905336173555?text=Giyinme%20odasi%20icin%20olcu%20gondermek%20istiyorum." target="_blank" class="btn btn-whatsapp">
             Ölçü Gönder & Fiyat Al &rarr;
           </a>
         </div>
@@ -145,7 +145,7 @@ console.log('--- Sayfalara Gerçek Kullanıcı Görselleri ve Videoları Entegre
             <li>✓ 18 mm E1 neme dayanıklı MDF gövde ve alüminyum kulp çıtaları</li>
             <li>✓ İstanbul genelinde 1 günde temiz montaj ve 5 yıl garanti</li>
           </ul>
-          <a href="https://wa.me/905320000000?text=Gardirop%20icin%20olcu%20gondermek%20istiyorum." target="_blank" class="btn btn-whatsapp">
+          <a href="https://wa.me/905336173555?text=Gardirop%20icin%20olcu%20gondermek%20istiyorum." target="_blank" class="btn btn-whatsapp">
             Ölçü Gönder & Fiyat Al &rarr;
           </a>
         </div>
@@ -360,11 +360,11 @@ console.log('--- Sayfalara Gerçek Kullanıcı Görselleri ve Videoları Entegre
             <li>✓ Sözleşmeli ve 5 yıl tam imalatçı garantisi</li>
           </ul>
           <div style="display: flex; gap: 12px; flex-wrap: wrap;">
-            <a href="https://wa.me/905320000000?text=Atolyenizden%20bilgi%20ve%20fiyat%20almak%20istiyorum." target="_blank" class="btn btn-whatsapp">
+            <a href="https://wa.me/905336173555?text=Atolyenizden%20bilgi%20ve%20fiyat%20almak%20istiyorum." target="_blank" class="btn btn-whatsapp">
               WhatsApp'tan Hemen Ulaşın
             </a>
-            <a href="tel:+905320000000" class="btn btn-phone">
-              0532 000 00 00
+            <a href="tel:+905336173555" class="btn btn-phone">
+              0533 617 35 55
             </a>
           </div>
         </div>

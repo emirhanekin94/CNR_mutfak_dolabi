@@ -140,7 +140,7 @@ Object.entries(schemaConfigs).forEach(([file, conf]) => {
           "provider": {
             "@type": "HomeGoodsStore",
             "name": "Mutfak Dolabınız",
-            "telephone": "+905544596979",
+            "telephone": "+905336173555",
             "priceRange": "₺₺",
             "address": {
               "@type": "PostalAddress",

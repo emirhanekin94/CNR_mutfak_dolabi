@@ -1,0 +1,31 @@
+{
+  "$schema": "https://agenticresourcediscovery.org/spec/schema/ai-catalog.v1.json",
+  "name": "Mutfak Dolabınız AI Catalog",
+  "description": "Özel ölçü mutfak dolabı, banyo dolabı ve mimari mobilya imalat hizmetleri kataloğu.",
+  "provider": {
+    "name": "Mutfak Dolabınız",
+    "url": "https://mutfakdolabiniz.com.tr"
+  },
+  "resources": [
+    {
+      "name": "Mutfak Dolapları",
+      "url": "https://mutfakdolabiniz.com.tr/mutfak-dolaplari.html",
+      "type": "product-catalog"
+    },
+    {
+      "name": "Fiyat Hesaplayıcı",
+      "url": "https://mutfakdolabiniz.com.tr/fiyat-hesapla.html",
+      "type": "calculator"
+    },
+    {
+      "name": "2026 E-Katalog",
+      "url": "https://mutfakdolabiniz.com.tr/katalog.html",
+      "type": "document"
+    },
+    {
+      "name": "İletişim & Atölye",
+      "url": "https://mutfakdolabiniz.com.tr/iletisim.html",
+      "type": "contact"
+    }
+  ]
+}

@@ -64,7 +64,7 @@ const blogContent = `
 
         <div style="margin-top: 30px; padding-top: 20px; border-top: 1px solid var(--color-border); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 14px;">
           <span style="font-weight: 700; color: var(--color-primary);">Bu model için atölye fiyatı almak ister misiniz?</span>
-          <a href="https://wa.me/905544596979?text=Merhaba,%20kapak%20karsilastirma%20blogunuzu%20okudum,%20mutfagim%20icin%20fiyat%20almak%20istiyorum." target="_blank" class="btn btn-whatsapp btn-sm">💬 WhatsApp ile Mimarımıza Sor</a>
+          <a href="https://wa.me/905336173555?text=Merhaba,%20kapak%20karsilastirma%20blogunuzu%20okudum,%20mutfagim%20icin%20fiyat%20almak%20istiyorum." target="_blank" class="btn btn-whatsapp btn-sm">💬 WhatsApp ile Mimarımıza Sor</a>
         </div>
       </article>
 
@@ -204,7 +204,7 @@ const blogContent = `
 
         <div style="margin-top: 30px; padding-top: 20px; border-top: 1px solid var(--color-border); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 14px;">
           <span style="font-weight: 700; color: var(--color-primary);">Dar mutfağınızı 3D mimari çizimle projelendirelim:</span>
-          <a href="https://wa.me/905544596979?text=Kucuk%20mutfagim%20icin%20akilli%20dolap%20projesi%20ve%20fiyat%20istiyorum." target="_blank" class="btn btn-whatsapp btn-sm">💬 Ücretsiz Keşif Al</a>
+          <a href="https://wa.me/905336173555?text=Kucuk%20mutfagim%20icin%20akilli%20dolap%20projesi%20ve%20fiyat%20istiyorum." target="_blank" class="btn btn-whatsapp btn-sm">💬 Ücretsiz Keşif Al</a>
         </div>
       </article>
 
