@@ -89,7 +89,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 Ümraniye atölyenizden detaylı 3D çizim ve kesin keşif randevusu almak istiyorum.`;
 
-      whatsappQuoteBtn.href = `https://wa.me/905336173555?text=${encodeURIComponent(text)}`;
+      whatsappQuoteBtn.href = `https://wa.me/905336173755?text=${encodeURIComponent(text)}`;
     }
   }
 

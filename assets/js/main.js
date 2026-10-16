@@ -81,7 +81,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }
       
       // Standart şirket WhatsApp hattı numarası
-      const phone = "905336173555"; // İletişim numarasıyla güncellenebilir
+      const phone = "905336173755"; // İletişim numarasıyla güncellenebilir
       const url = `https://wa.me/${phone}?text=${encodeURIComponent(text)}`;
       window.open(url, '_blank');
     });
@@ -182,8 +182,8 @@ document.addEventListener('DOMContentLoaded', () => {
       const href = (el.getAttribute('href') || '').toLowerCase();
       if (href.startsWith('tel:')) {
         const phone = href.replace('tel:', '').replace(/[^\d+]/g, '');
-        if (phone.includes('5336173555') || phone.includes('533')) {
-          return 'Mobil Hat Arama (0533 617 35 55)';
+        if (phone.includes('5336173755') || phone.includes('533')) {
+          return 'Mobil Hat Arama (0533 617 37 55)';
         } else if (phone.includes('2162088281') || phone.includes('216')) {
           return 'Sabit Hat Arama (0216 208 82 81)';
         }
@@ -282,7 +282,7 @@ document.addEventListener('DOMContentLoaded', () => {
         sendGtag('contact', {
           event_category: 'Dönüşüm',
           event_label: buttonLabel,
-          contact_method: href.includes('216') ? 'Sabit Hat (0216 208 82 81)' : 'Mobil Hat (0533 617 35 55)',
+          contact_method: href.includes('216') ? 'Sabit Hat (0216 208 82 81)' : 'Mobil Hat (0533 617 37 55)',
           button_location: buttonLocation,
           value: 1
         });

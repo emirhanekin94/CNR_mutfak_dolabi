@@ -62,7 +62,7 @@ for (const [file, info] of Object.entries(districtMap)) {
           <a href="mutfak-dolaplari.html" class="btn-hero-primary">
             2026 Koleksiyonunu Keşfet
           </a>
-          <a href="https://wa.me/905336173555?text=Merhaba,%20${encodeURIComponent(info.name)}%20icin%20ucretsiz%203D%20mimari%20cizim%20ve%20fiyat%20almak%20istiyorum." target="_blank" class="btn-hero-secondary">
+          <a href="https://wa.me/905336173755?text=Merhaba,%20${encodeURIComponent(info.name)}%20icin%20ucretsiz%203D%20mimari%20cizim%20ve%20fiyat%20almak%20istiyorum." target="_blank" class="btn-hero-secondary">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" style="color: #25d366;"><path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0 0 12.04 2zm5.82 14.12c-.24.68-1.21 1.25-1.74 1.29-.48.04-1.1.06-3.56-.96-3.14-1.3-5.18-4.48-5.34-4.69-.15-.21-1.28-1.7-1.28-3.24 0-1.54.81-2.3 1.1-2.61.29-.31.64-.39.85-.39.21 0 .43 0 .62.01.2.01.47-.08.73.55.27.65.91 2.22.99 2.38.08.16.13.35.03.56-.1.21-.16.34-.31.52-.16.18-.33.4-.48.54-.16.16-.33.33-.14.65.19.32.84 1.39 1.8 2.25 1.24 1.1 2.28 1.44 2.61 1.6.33.16.52.14.71-.08.19-.22.82-.95 1.04-1.28.22-.33.44-.27.73-.16.3.11 1.89.89 2.21 1.05.33.16.54.24.62.38.08.14.08.8-.16 1.48z"/></svg>
             Ücretsiz Keşif & 3D Proje
           </a>

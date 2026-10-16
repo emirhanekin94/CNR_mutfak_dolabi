@@ -13,10 +13,10 @@ files.forEach(file => {
   let original = content;
 
   // 1. Phone number replacements
-  content = content.replace(/\+905336173555/g, '+905336173555');
-  content = content.replace(/905336173555/g, '905336173555');
-  content = content.replace(/0533 617 35 55/g, '0533 617 35 55');
-  content = content.replace(/0533 617 35 55/g, '0533 617 35 55');
+  content = content.replace(/\+905336173755/g, '+905336173755');
+  content = content.replace(/905336173755/g, '905336173755');
+  content = content.replace(/0533 617 37 55/g, '0533 617 37 55');
+  content = content.replace(/0533 617 37 55/g, '0533 617 37 55');
 
   // 2. Add Instagram to Top Bar if present and not already added
   const instaLink = '<a href="https://instagram.com/cinarahsapurunleri?cplk=ZTR0YmgyczRkOTB4" target="_blank" rel="noopener">📸 @cinarahsapurunleri</a>';
@@ -37,8 +37,8 @@ files.forEach(file => {
   }
 
   // 4. Update Footer in all pages: Add Instagram & CNR Kapak Kataloğu PDF link
-  const footerContactOld = `<p style="font-size: 0.9rem; margin-bottom: 6px;">💬 WhatsApp: <a href="https://wa.me/905336173555" target="_blank" style="color: var(--color-whatsapp);">0533 617 35 55</a></p>`;
-  const footerContactNew = `<p style="font-size: 0.9rem; margin-bottom: 6px;">💬 WhatsApp: <a href="https://wa.me/905336173555" target="_blank" style="color: var(--color-whatsapp);">0533 617 35 55</a></p>
+  const footerContactOld = `<p style="font-size: 0.9rem; margin-bottom: 6px;">💬 WhatsApp: <a href="https://wa.me/905336173755" target="_blank" style="color: var(--color-whatsapp);">0533 617 37 55</a></p>`;
+  const footerContactNew = `<p style="font-size: 0.9rem; margin-bottom: 6px;">💬 WhatsApp: <a href="https://wa.me/905336173755" target="_blank" style="color: var(--color-whatsapp);">0533 617 37 55</a></p>
           <p style="font-size: 0.9rem; margin-bottom: 6px;">📸 Instagram: <a href="https://instagram.com/cinarahsapurunleri?cplk=ZTR0YmgyczRkOTB4" target="_blank" rel="noopener" style="color: #e1306c; font-weight: 600;">@cinarahsapurunleri</a></p>`;
 
   if (content.includes(footerContactOld) && !content.includes('📸 Instagram:')) {
