@@ -331,6 +331,54 @@ ul, ol {
   }
 }
 
+.installment-strip {
+  background: linear-gradient(90deg, var(--color-accent-hover), var(--color-accent) 50%, var(--color-accent-gold));
+  padding: 9px 12px;
+}
+
+.installment-strip-inner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.installment-badge-text {
+  display: inline-flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  color: #ffffff;
+  font-size: 0.86rem;
+  font-weight: 600;
+  letter-spacing: 0.2px;
+  text-align: center;
+}
+
+.installment-highlight {
+  background: #ffffff;
+  color: var(--color-accent-hover);
+  padding: 2px 10px;
+  border-radius: 20px;
+  font-weight: 800;
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+
+@media (max-width: 480px) {
+  .installment-strip {
+    padding: 7px 10px;
+  }
+  .installment-badge-text {
+    font-size: 0.76rem;
+  }
+  .installment-highlight {
+    font-size: 0.68rem;
+    padding: 2px 8px;
+  }
+}
+
 .site-header {
   position: sticky;
   top: 0;
