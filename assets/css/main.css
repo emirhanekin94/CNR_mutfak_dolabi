@@ -902,6 +902,42 @@ ul, ol {
   box-shadow: 0 10px 28px rgba(197, 155, 95, 0.45) !important;
 }
 
+
+.btn-hero-instagram {
+  background: linear-gradient(135deg, rgba(225, 48, 108, 0.12), rgba(131, 58, 180, 0.12)) !important;
+  color: #ffffff !important;
+  border: 1px solid rgba(225, 48, 108, 0.45) !important;
+  font-weight: 600 !important;
+  font-size: 0.92rem !important;
+  padding: 14px 22px !important;
+  border-radius: var(--radius-sm) !important;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.25s ease;
+  text-decoration: none;
+  box-shadow: 0 4px 16px rgba(225, 48, 108, 0.2) !important;
+}
+
+.btn-hero-instagram svg {
+  color: #e1306c;
+  transition: transform 0.25s ease, color 0.25s ease;
+  flex-shrink: 0;
+}
+
+.btn-hero-instagram:hover {
+  background: linear-gradient(45deg, #f09433, #dc2743, #bc1888) !important;
+  border-color: transparent !important;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 28px rgba(220, 39, 67, 0.45) !important;
+  color: #ffffff !important;
+}
+
+.btn-hero-instagram:hover svg {
+  color: #ffffff;
+  transform: scale(1.12);
+}
+
 .btn-hero-secondary {
   background: rgba(255, 255, 255, 0.06) !important;
   color: #ffffff !important;
@@ -2124,6 +2160,38 @@ ul, ol {
   opacity: 1;
 }
 
+
+.float-instagram-btn {
+  width: 60px;
+  height: 60px;
+  border-radius: var(--radius-full);
+  background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8px 25px rgba(214, 36, 159, 0.45);
+  transition: all var(--transition-fast);
+  text-decoration: none;
+  position: relative;
+}
+
+.float-instagram-btn svg {
+  width: 30px;
+  height: 30px;
+  fill: #ffffff;
+  transition: transform var(--transition-fast);
+}
+
+.float-instagram-btn:hover {
+  transform: scale(1.08) translateY(-2px);
+  box-shadow: 0 12px 30px rgba(214, 36, 159, 0.7);
+}
+
+.float-instagram-btn:hover svg {
+  transform: scale(1.08);
+}
+
 .float-whatsapp-btn {
   width: 60px;
   height: 60px;
@@ -2158,7 +2226,7 @@ ul, ol {
 
 /* Mobil Sabit Alt Eylem Çubuğu (Yüksek Dönüşüm - 2 Net Eylem) */
 .mobile-bottom-bar {
-  display: none;
+  display: none !important;
   position: fixed;
   bottom: 0;
   left: 0;
@@ -2170,17 +2238,47 @@ ul, ol {
   border-top: 1px solid rgba(255, 255, 255, 0.12);
   z-index: 9998;
   box-shadow: 0 -8px 25px rgba(0, 0, 0, 0.35);
-  padding: 8px 12px;
-  gap: 10px;
+  padding: 8px 8px;
+  gap: 6px;
+  box-sizing: border-box;
 }
 
 @media (max-width: 768px) {
   .mobile-bottom-bar {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    align-items: center;
+    display: flex !important;
+    gap: 6px !important;
+    padding: 8px 8px !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    height: 66px !important;
+    box-sizing: border-box !important;
+    width: 100% !important;
+    left: 0 !important;
+    right: 0 !important;
   }
-  /* KRİTİK: Mobilde yüzen WhatsApp balonu tamamen gizlenir, tek ve net WhatsApp alt çubukta kalır! */
+  .mobile-bottom-bar .mobile-bottom-btn {
+    flex: 1 1 0 !important;
+    min-width: 0 !important;
+    max-width: 33.33% !important;
+    height: 48px !important;
+    padding: 0 4px !important;
+    gap: 4px !important;
+    font-size: clamp(0.72rem, 2.7vw, 0.82rem) !important;
+    box-sizing: border-box !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+  .mobile-bottom-bar .mobile-bottom-btn span {
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    white-space: nowrap !important;
+  }
+  .mobile-bottom-bar .mobile-bottom-btn svg {
+    width: 17px !important;
+    height: 17px !important;
+    flex-shrink: 0 !important;
+  }
   .floating-actions {
     display: none !important;
   }

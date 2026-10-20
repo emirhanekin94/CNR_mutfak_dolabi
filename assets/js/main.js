@@ -147,7 +147,7 @@ document.addEventListener('DOMContentLoaded', () => {
       if (el.closest('.mobile-drawer, .drawer-content')) return 'Mobil_Menu_Cekmecesi';
       if (el.closest('.hero, .hero-section')) return 'Hero_Karsilama';
       if (el.closest('.mobile-bottom-bar')) return 'Mobil_Sabit_Alt_Bar';
-      if (el.closest('.float-btn-group, .float-whatsapp-btn, .float-call-btn')) return 'Sabit_Kose_Butonlari';
+      if (el.closest('.floating-actions, .float-btn-group, .float-whatsapp-btn, .float-phone-btn, .float-call-btn, .float-instagram-btn')) return 'Sabit_Kose_Yuzen_Ada';
       if (el.closest('.calculator-section, #priceCalculatorForm, .calc-wrapper')) return 'Fiyat_Hesaplayici';
       if (el.closest('.site-footer, footer')) return 'Site_Alti_Footer';
       if (el.closest('.faq-section, .faq-container')) return 'SSS_Bolumu';
@@ -225,10 +225,39 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function detectButtonType(el, href) {
       const h = (href || '').toLowerCase();
-      if (h.startsWith('tel:')) return 'telefon_arama';
-      if (h.includes('wa.me') || h.includes('whatsapp')) return 'whatsapp_mesaj';
+      const elClass = (typeof el.className === 'string' ? el.className.toLowerCase() : '');
+      const elId = (el.id || '').toLowerCase();
+
+      // 1. TELEFON ARAMA (Tüm tel: linkleri ve arama butonları)
+      if (h.startsWith('tel:') || 
+          h.includes('tel:+90') || 
+          h.includes('tel:0533') || 
+          h.includes('tel:0216') ||
+          elClass.includes('phone') || 
+          elClass.includes('btn-call') || 
+          el.closest('.btn-call-sticky, .float-phone-btn, .float-call-btn, a[href^="tel:"]')) {
+        return 'telefon_arama';
+      }
+
+      // 2. WHATSAPP (wa.me, api.whatsapp ve tüm whatsapp sınıfları)
+      if (h.includes('wa.me') || 
+          h.includes('whatsapp') || 
+          elClass.includes('whatsapp') || 
+          elClass.includes('btn-wa') || 
+          elId.includes('whatsapp') || 
+          el.closest('.btn-whatsapp, .float-whatsapp-btn, .btn-wa-sticky, #calcWhatsappBtn, a[href*="wa.me"], a[href*="whatsapp"]')) {
+        return 'whatsapp_mesaj';
+      }
+
+      // 3. INSTAGRAM (instagram.com linkleri ve butonları)
+      if (h.includes('instagram.com') || 
+          elClass.includes('instagram') || 
+          elClass.includes('btn-ig') || 
+          el.closest('.btn-hero-instagram, .float-instagram-btn, .btn-ig-sticky, a[href*="instagram.com"]')) {
+        return 'instagram_ziyaret';
+      }
+
       if (h.includes('maps') || h.includes('goo.gl')) return 'harita_konum';
-      if (h.includes('instagram.com')) return 'sosyal_medya';
       if (h.endsWith('.pdf') || h.includes('katalog')) return 'katalog';
       if (h.includes('fiyat-hesapla') || el.id === 'calcWhatsappBtn') return 'fiyat_hesapla';
       if (el.classList.contains('spec-tab-btn')) return 'sekme_secimi';
@@ -255,7 +284,66 @@ document.addEventListener('DOMContentLoaded', () => {
       const buttonLocation = detectLocation(target);
       const buttonType = detectButtonType(target, href);
 
-      // 1. Standart Buton Tıklama Olayı (GA4 Raporlarında doğrudan görünür)
+      // 1. MÜŞTERİNİN GA4 PANELİNDE DİREKT VE NET GÖRECEĞİ ÖZEL ETKİNLİKLER
+      if (buttonType === 'whatsapp_mesaj') {
+        // A) Doğrudan 'whatsapp_click' Etkinliği (Ana tabloda gün/hafta bazında ayrı satırda çıkar)
+        sendGtag('whatsapp_click', {
+          event_category: 'WhatsApp',
+          event_label: buttonLabel,
+          button_location: buttonLocation,
+          button_text: buttonLabel,
+          link_url: href || window.location.href,
+          page_path: window.location.pathname
+        });
+
+        // B) Google Ads Dönüşüm Takibi (Mevcut generate_lead korunur)
+        sendGtag('generate_lead', {
+          event_category: 'Dönüşüm',
+          event_label: buttonLabel,
+          lead_type: 'WhatsApp Danışma & Teklif',
+          button_location: buttonLocation,
+          value: 1
+        });
+      } else if (buttonType === 'telefon_arama') {
+        // A) Doğrudan 'telefon_arama_click' Etkinliği (Ana tabloda gün/hafta bazında ayrı satırda çıkar)
+        sendGtag('telefon_arama_click', {
+          event_category: 'Telefon Arama',
+          event_label: buttonLabel,
+          button_location: buttonLocation,
+          button_text: buttonLabel,
+          contact_method: href.includes('216') ? 'Sabit Hat (0216 208 82 81)' : 'Mobil Hat (0533 617 37 55)',
+          link_url: href || window.location.href,
+          page_path: window.location.pathname
+        });
+
+        // B) Google Ads Dönüşüm Takibi (Mevcut contact korunur)
+        sendGtag('contact', {
+          event_category: 'Dönüşüm',
+          event_label: buttonLabel,
+          contact_method: href.includes('216') ? 'Sabit Hat (0216 208 82 81)' : 'Mobil Hat (0533 617 37 55)',
+          button_location: buttonLocation,
+          value: 1
+        });
+      } else if (buttonType === 'instagram_ziyaret') {
+        // A) Doğrudan 'instagram_click' Etkinliği (Ana tabloda gün/hafta bazında ayrı satırda çıkar)
+        sendGtag('instagram_click', {
+          event_category: 'Instagram',
+          event_label: buttonLabel,
+          button_location: buttonLocation,
+          button_text: buttonLabel,
+          link_url: href || window.location.href,
+          page_path: window.location.pathname
+        });
+      } else if (buttonType === 'katalog') {
+        sendGtag('file_download', {
+          event_category: 'İçerik İndirme',
+          event_label: buttonLabel,
+          file_name: 'mutfak-dolabiniz-kapak-katalogu.pdf',
+          file_extension: 'pdf'
+        });
+      }
+
+      // 2. Standart Genel Buton Tıklama (Genel metrikler için button_click de gönderilmeye devam eder)
       sendGtag('button_click', {
         event_category: 'Buton Tıklama',
         event_label: buttonLabel,
@@ -268,32 +356,7 @@ document.addEventListener('DOMContentLoaded', () => {
         page_path: window.location.pathname,
         page_title: document.title
       });
-
-      // 2. Yüksek Değerli Dönüşüm Olayları (GA4 Dönüşümler Raporuna Otomatik Düşer)
-      if (buttonType === 'whatsapp_mesaj') {
-        sendGtag('generate_lead', {
-          event_category: 'Dönüşüm',
-          event_label: buttonLabel,
-          lead_type: 'WhatsApp Danışma & Teklif',
-          button_location: buttonLocation,
-          value: 1
-        });
-      } else if (buttonType === 'telefon_arama') {
-        sendGtag('contact', {
-          event_category: 'Dönüşüm',
-          event_label: buttonLabel,
-          contact_method: href.includes('216') ? 'Sabit Hat (0216 208 82 81)' : 'Mobil Hat (0533 617 37 55)',
-          button_location: buttonLocation,
-          value: 1
-        });
-      } else if (buttonType === 'katalog') {
-        sendGtag('file_download', {
-          event_category: 'İçerik İndirme',
-          event_label: buttonLabel,
-          file_name: 'mutfak-dolabiniz-kapak-katalogu.pdf',
-          file_extension: 'pdf'
-        });
-      }
+    }
     }, { capture: true, passive: true });
 
     // 3. Form Gönderim Takibi (Keşif Formları)
