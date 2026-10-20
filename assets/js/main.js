@@ -347,21 +347,21 @@ function initMutfakDolabinizApp() {
           file_name: 'mutfak-dolabiniz-kapak-katalogu.pdf',
           file_extension: 'pdf'
         });
+      } else {
+        // 2. Diğer Tüm Genel Butonlar (Yalnızca WhatsApp, Instagram, Telefon veya Katalog DIŞINDAKİ butonlar)
+        sendGtag('button_click', {
+          event_category: 'Buton Tıklama',
+          event_label: buttonLabel,
+          button_name: buttonLabel,
+          button_text: buttonLabel,
+          button_type: buttonType,
+          button_location: buttonLocation,
+          link_url: href || window.location.href,
+          page_location: window.location.href,
+          page_path: window.location.pathname,
+          page_title: document.title
+        });
       }
-
-      // 2. Standart Genel Buton Tıklama (Genel metrikler için button_click de gönderilmeye devam eder)
-      sendGtag('button_click', {
-        event_category: 'Buton Tıklama',
-        event_label: buttonLabel,
-        button_name: buttonLabel,
-        button_text: buttonLabel,
-        button_type: buttonType,
-        button_location: buttonLocation,
-        link_url: href || window.location.href,
-        page_location: window.location.href,
-        page_path: window.location.pathname,
-        page_title: document.title
-      });
     }, { capture: true, passive: true });
 
     // 3. Form Gönderim Takibi (Keşif Formları)
