@@ -3,7 +3,7 @@
  * Sıfır Harici Kütüphane, Yüksek Performans, Google PageSpeed 90+ Uyumlu
  */
 
-document.addEventListener('DOMContentLoaded', () => {
+function initMutfakDolabinizApp() {
   // 1. Mobil Menü Açma / Kapama (Drawer)
   const mobileToggle = document.querySelector('.mobile-nav-toggle');
   const mobileDrawer = document.querySelector('.mobile-drawer');
@@ -134,10 +134,16 @@ document.addEventListener('DOMContentLoaded', () => {
     let lastTrackTarget = null;
 
     function sendGtag(eventName, params) {
-      if (typeof window.gtag === 'function') {
-        window.gtag('event', eventName, params);
-      } else if (window.dataLayer && Array.isArray(window.dataLayer)) {
-        window.dataLayer.push({ event: eventName, ...params });
+      try {
+        console.log('[GA4 Takip] Etkinlik: ' + eventName, params);
+        if (typeof window.gtag === 'function') {
+          window.gtag('event', eventName, params);
+        } else {
+          window.dataLayer = window.dataLayer || [];
+          window.dataLayer.push({ event: eventName, ...params });
+        }
+      } catch (err) {
+        console.warn('GA4 Takip Hatası:', err);
       }
     }
 
@@ -356,7 +362,6 @@ document.addEventListener('DOMContentLoaded', () => {
         page_path: window.location.pathname,
         page_title: document.title
       });
-    }
     }, { capture: true, passive: true });
 
     // 3. Form Gönderim Takibi (Keşif Formları)
@@ -381,4 +386,10 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     }, { capture: true, passive: true });
   })();
-});
+}
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initMutfakDolabinizApp);
+} else {
+  initMutfakDolabinizApp();
+}
