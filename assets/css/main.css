@@ -1252,6 +1252,7 @@ ul, ol {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 24px;
+  align-items: stretch;
   margin-bottom: 28px;
 }
 
@@ -1264,6 +1265,7 @@ ul, ol {
   transition: transform var(--transition-smooth), box-shadow var(--transition-smooth), border-color var(--transition-smooth);
   display: flex;
   flex-direction: column;
+  height: 100%;
 }
 
 .live-gallery-card:hover {
@@ -1275,17 +1277,27 @@ ul, ol {
 .live-gallery-media {
   position: relative;
   width: 100%;
-  aspect-ratio: 16 / 10;
+  aspect-ratio: 4 / 3;
   overflow: hidden;
-  background: #181d24;
+  background: #0f172a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: zoom-in;
 }
 
 .live-gallery-media img {
   width: 100%;
   height: 100%;
+  max-width: 100%;
+  display: block;
   object-fit: cover;
   transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
   cursor: zoom-in;
+}
+
+.live-gallery-card:hover .live-gallery-media img {
+  transform: scale(1.05);
 }
 
 .live-gallery-card:hover .live-gallery-media img {
@@ -1362,6 +1374,7 @@ ul, ol {
 }
 
 .live-gallery-meta {
+  margin-top: auto;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -1429,40 +1442,42 @@ ul, ol {
   }
   
   .gallery-swipe-hint {
-    display: block;
-    margin-bottom: 10px;
-    letter-spacing: 0.3px;
+    display: none !important;
   }
   
-  /* Mobilde akıcı yatay kaydırma */
+  /* Mobilde dikey, alt alta sıralı akış (sağa sola kaydırma yok, doğal oran) */
   .live-gallery-scroll-wrap {
-    margin-left: -16px;
-    margin-right: -16px;
-    padding-left: 16px;
-    padding-right: 16px;
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-    scrollbar-width: none;
-    scroll-snap-type: x mandatory;
-    padding-bottom: 12px;
-  }
-  
-  .live-gallery-scroll-wrap::-webkit-scrollbar {
-    display: none;
+    margin: 0;
+    padding: 0;
+    overflow: visible;
+    width: 100%;
   }
   
   .live-gallery-grid {
     display: flex;
-    flex-wrap: nowrap;
-    gap: 14px;
-    width: max-content;
-    margin-bottom: 14px;
+    flex-direction: column;
+    width: 100%;
+    gap: 24px;
+    margin-bottom: 24px;
   }
   
   .live-gallery-card {
-    width: 285px;
-    flex-shrink: 0;
-    scroll-snap-align: start;
+    width: 100%;
+    max-width: 100%;
+    flex-shrink: 1;
+    margin: 0;
+  }
+
+  .live-gallery-media {
+    aspect-ratio: auto !important;
+    height: auto !important;
+    background: transparent !important;
+  }
+
+  .live-gallery-media img {
+    width: 100%;
+    height: auto !important;
+    object-fit: contain !important;
   }
   
   .live-gallery-title {
@@ -2376,6 +2391,1024 @@ ul, ol {
 .mobile-bottom-btn.btn-wa-sticky:active {
   background: #20bd5a;
 }
+
+.mobile-bottom-btn.btn-ig-sticky {
+  background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%) !important;
+  color: #ffffff !important;
+  border: 1px solid rgba(255, 255, 255, 0.25) !important;
+  box-shadow: 0 4px 14px rgba(225, 48, 108, 0.4) !important;
+}
+
+.mobile-bottom-btn.btn-ig-sticky svg {
+  fill: #ffffff !important;
+  color: #ffffff !important;
+}
+
+.mobile-bottom-btn.btn-ig-sticky span {
+  color: #ffffff !important;
+  font-weight: 700 !important;
+}
+
+.mobile-bottom-btn.btn-ig-sticky:active {
+  opacity: 0.92;
+  transform: scale(0.97);
+}
+
+/* ==========================================================================
+   2 KOLONLU DÜZEN & AYIRT EDİCİ GÖRSEL ÇERÇEVELERİ
+   Masaüstünde dengeli zikzak (sağ-sol), Mobilde kesinlikle [Başlık/Metin -> Görsel] sırası
+   ========================================================================== */
+.grid-2-col {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: 48px;
+  align-items: center;
+}
+
+.grid-2-col.reverse {
+  grid-template-columns: 0.85fr 1.15fr;
+}
+
+@media (min-width: 993px) {
+  .grid-2-col.desktop-reverse {
+    grid-template-columns: 0.85fr 1.15fr;
+  }
+  .grid-2-col.desktop-reverse > .section-text-col {
+    order: 2;
+  }
+  .grid-2-col.desktop-reverse > .section-media-col {
+    order: 1;
+  }
+}
+
+@media (max-width: 992px) {
+  .grid-2-col,
+  .grid-2-col.reverse,
+  .grid-2-col.desktop-reverse {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 24px !important;
+  }
+  /* Mobilde Başlık/Metin her zaman üstte (1), Görsel her zaman altta (2) */
+  .grid-2-col > .section-text-col,
+  .grid-2-col.desktop-reverse > .section-text-col,
+  .grid-2-col.reverse > .section-text-col {
+    order: 1 !important;
+  }
+  .grid-2-col > .section-media-col,
+  .grid-2-col.desktop-reverse > .section-media-col,
+  .grid-2-col.reverse > .section-media-col {
+    order: 2 !important;
+  }
+  /* Eski kodda düz div kalmışsa */
+  .grid-2-col.reverse > div:first-child {
+    order: 2 !important;
+  }
+  .grid-2-col.reverse > div:last-child {
+    order: 1 !important;
+  }
+}
+
+/* Kapak Türü Görsel Çerçevesi ve Ayırt Edici Rozet (Ultra Premium) */
+.door-sample-frame {
+  position: relative;
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: 0 14px 34px rgba(0, 0, 0, 0.08);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  background: #f8fafc;
+}
+
+.door-sample-frame img {
+  width: 100%;
+  height: auto;
+  display: block;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.door-sample-frame:hover img {
+  transform: scale(1.03);
+}
+
+.door-sample-badge {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  background: rgba(15, 23, 42, 0.86);
+  backdrop-filter: blur(12px);
+  color: #ffffff;
+  font-size: 0.8rem;
+  font-weight: 700;
+  padding: 7px 16px;
+  border-radius: 50px;
+  letter-spacing: 0.5px;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.3);
+  z-index: 2;
+}
+
+.categories-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+}
+
+@media (max-width: 992px) {
+  .categories-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .categories-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.category-card {
+  background-color: var(--color-bg-card);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--color-border);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  transition: all var(--transition-smooth);
+  display: flex;
+  flex-direction: column;
+}
+
+.category-card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-lg);
+  border-color: var(--color-accent);
+}
+
+.category-card-body {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.category-badge {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #875d1f;
+  margin-bottom: 6px;
+  letter-spacing: 1px;
+}
+
+.category-title {
+  font-family: var(--font-serif);
+  font-size: 1.35rem;
+  font-weight: 600;
+  color: var(--color-primary);
+  margin-bottom: 10px;
+  line-height: 1.3;
+}
+
+.category-desc {
+  font-size: 0.9rem;
+  color: var(--color-text-muted);
+  margin-bottom: 18px;
+  flex-grow: 1;
+}
+
+.category-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 18px;
+}
+
+.category-tag {
+  font-size: 0.75rem;
+  background: var(--color-bg-alt);
+  padding: 4px 10px;
+  border-radius: 4px;
+  color: var(--color-text-main);
+  font-weight: 500;
+}
+
+.category-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-top: 1px solid #f1ede4;
+  padding-top: 14px;
+}
+
+.category-link {
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: #875d1f;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.category-link:hover {
+  color: #694511;
+  text-decoration: underline;
+}
+
+/* ==========================================================================
+   MUTFAK DOLABI ALTKATEGORİ SEKMELERİ (MEMBRAN, LAKE, AKRİLİK, MATPLUS, HIGH GLOSS)
+   ========================================================================== */
+.spec-tabs {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 35px;
+  flex-wrap: wrap;
+}
+
+.spec-tab-btn {
+  padding: 12px 22px;
+  border-radius: var(--radius-full);
+  background: var(--color-bg-card);
+  border: 1.5px solid var(--color-border);
+  color: var(--color-primary);
+  font-weight: 600;
+  font-size: 0.92rem;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.spec-tab-btn.active,
+.spec-tab-btn:hover {
+  background: var(--color-primary);
+  color: #ffffff;
+  border-color: var(--color-primary);
+  box-shadow: var(--shadow-md);
+}
+
+.spec-tab-panel {
+  display: none;
+}
+
+.spec-tab-panel.active {
+  display: block;
+  animation: fadeIn 0.4s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Teknik Özellikler Karşılaştırma Tablosu */
+.spec-comparison-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 24px;
+}
+
+.spec-card {
+  background: #ffffff;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: 24px;
+  position: relative;
+  transition: all var(--transition-fast);
+}
+
+.spec-card:hover {
+  border-color: var(--color-accent);
+  box-shadow: var(--shadow-md);
+}
+
+.spec-card-badge {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  background: var(--color-accent-light);
+  color: #875d1f;
+  padding: 4px 10px;
+  border-radius: var(--radius-full);
+}
+
+.spec-card-title {
+  font-family: var(--font-serif);
+  font-size: 1.3rem;
+  margin-bottom: 12px;
+  color: var(--color-primary);
+}
+
+.spec-feature-list {
+  margin: 16px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.spec-feature-list li {
+  font-size: 0.88rem;
+  color: var(--color-text-muted);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.spec-feature-list li::before {
+  content: '✓';
+  color: var(--color-accent);
+  font-weight: 700;
+}
+
+/* ==========================================================================
+   METRETÜL FİYAT VE PROJE HESAPLAMA MOTORU (CALCULATOR UI)
+   ========================================================================== */
+.calc-box {
+  background: #ffffff;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-border);
+  box-shadow: var(--shadow-lg);
+  padding: 36px;
+  max-width: 860px;
+  margin: 0 auto;
+}
+
+.calc-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+
+@media (max-width: 768px) {
+  .calc-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-label {
+  display: block;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--color-primary);
+  margin-bottom: 8px;
+}
+
+.form-select, .form-input {
+  width: 100%;
+  padding: 13px 16px;
+  border-radius: var(--radius-md);
+  border: 1.5px solid var(--color-border);
+  background: var(--color-bg-light);
+  font-size: 0.95rem;
+  color: var(--color-primary);
+  transition: border-color var(--transition-fast);
+}
+
+.form-select:focus, .form-input:focus {
+  border-color: var(--color-accent);
+  background: #ffffff;
+}
+
+.form-row-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  margin-bottom: 14px;
+}
+
+@media (max-width: 576px) {
+  .form-row-2 {
+    grid-template-columns: 1fr !important;
+    gap: 12px;
+  }
+}
+
+.calc-result-panel {
+  background: linear-gradient(135deg, #14181f 0%, #1e242e 100%);
+  color: #ffffff;
+  border-radius: var(--radius-md);
+  padding: 28px;
+  text-align: center;
+  margin-top: 24px;
+  border: 1px solid rgba(197, 155, 95, 0.3);
+}
+
+.calc-result-price {
+  font-size: 2.4rem;
+  font-weight: 700;
+  color: var(--color-accent);
+  margin: 10px 0;
+}
+
+.calc-result-note {
+  font-size: 0.82rem;
+  color: #a4b0bd;
+  margin-bottom: 20px;
+}
+
+/* ==========================================================================
+   SSS / FAQ AKORDİYON (SEO ZENGİN SONUÇLAR İÇİN)
+   ========================================================================== */
+.faq-accordion {
+  max-width: 800px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.faq-item {
+  background: #ffffff;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  transition: all var(--transition-fast);
+}
+
+.faq-item.active {
+  border-color: var(--color-accent);
+  box-shadow: var(--shadow-sm);
+}
+
+.faq-question {
+  width: 100%;
+  padding: 18px 22px;
+  text-align: left;
+  background: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--color-primary);
+  cursor: pointer;
+}
+
+.faq-icon {
+  font-size: 1.2rem;
+  color: var(--color-accent);
+  transition: transform var(--transition-fast);
+}
+
+.faq-item.active .faq-icon {
+  transform: rotate(45deg);
+}
+
+.faq-answer {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s cubic-bezier(0, 1, 0, 1);
+  background: var(--color-bg-light);
+}
+
+.faq-item.active .faq-answer {
+  max-height: 500px;
+  transition: max-height 0.35s ease-in-out;
+}
+
+.faq-answer-inner {
+  padding: 18px 22px;
+  font-size: 0.95rem;
+  color: var(--color-text-muted);
+  line-height: 1.7;
+}
+
+/* ==========================================================================
+   MÜŞTERİ YORUMLARI VE GÜVEN ROZETLERİ (REVIEWS)
+   ========================================================================== */
+.reviews-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+@media (max-width: 860px) {
+  .reviews-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.review-card {
+  background: #ffffff;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: 26px;
+  box-shadow: var(--shadow-sm);
+}
+
+.review-stars {
+  color: #f59e0b;
+  margin-bottom: 12px;
+  font-size: 1.1rem;
+}
+
+.review-text {
+  font-size: 0.95rem;
+  color: var(--color-text-main);
+  font-style: italic;
+  margin-bottom: 16px;
+}
+
+.review-author {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid #f1ede4;
+  padding-top: 12px;
+  font-size: 0.85rem;
+}
+
+.author-name {
+  font-weight: 700;
+  color: var(--color-primary);
+}
+
+.author-loc {
+  color: var(--color-text-muted);
+}
+
+/* ==========================================================================
+   HARİTA VE İLETİŞİM BÖLÜMÜ
+   ========================================================================== */
+.contact-map-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.1fr;
+  gap: 36px;
+  align-items: center;
+}
+
+@media (max-width: 992px) {
+  .contact-map-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.contact-info-box {
+  background: #ffffff;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-border);
+  padding: 36px;
+  box-shadow: var(--shadow-md);
+}
+
+.contact-detail-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  margin-bottom: 22px;
+}
+
+.contact-icon-bubble {
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-md);
+  background: var(--color-accent-light);
+  color: var(--color-accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  flex-shrink: 0;
+}
+
+.contact-detail-title {
+  font-size: 0.82rem;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+.contact-detail-val {
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--color-primary);
+  margin-top: 2px;
+}
+
+.map-wrapper {
+  position: relative;
+  width: 100%;
+  height: 440px;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+  border: 1px solid var(--color-border);
+}
+
+.map-wrapper iframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+/* ==========================================================================
+   ALT BİLGİ (FOOTER)
+   ========================================================================== */
+.site-footer {
+  background-color: var(--color-bg-dark);
+  color: #adb7c2;
+  padding-top: 70px;
+  padding-bottom: 30px;
+  border-top: 1px solid var(--color-border-dark);
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1fr 1.2fr;
+  gap: 40px;
+  margin-bottom: 50px;
+}
+
+@media (max-width: 992px) {
+  .footer-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .footer-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.footer-col-title {
+  font-family: var(--font-serif);
+  font-size: 1.15rem;
+  color: #ffffff;
+  margin-bottom: 20px;
+  position: relative;
+  padding-bottom: 10px;
+}
+
+.footer-col-title::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 30px;
+  height: 2px;
+  background-color: var(--color-accent);
+}
+
+.footer-links {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.footer-links a {
+  color: #9ba6b2;
+  font-size: 0.9rem;
+}
+
+.footer-links a:hover {
+  color: var(--color-accent);
+  padding-left: 4px;
+}
+
+.footer-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid var(--color-border-dark);
+  padding-top: 25px;
+  font-size: 0.85rem;
+}
+
+@media (max-width: 768px) {
+  .footer-bottom {
+    flex-direction: column;
+    gap: 12px;
+    text-align: center;
+  }
+}
+
+/* ==========================================================================
+   SABİT MOBİL VE WHATSAPP BUTONLARI (HIGH CONVERSION GOOGLE ADS)
+   ========================================================================== */
+.floating-actions {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 999;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.float-phone-btn {
+  width: 60px;
+  height: 60px;
+  border-radius: var(--radius-full);
+  background-color: #14181f;
+  color: #ffffff;
+  border: 2px solid var(--color-accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8px 25px rgba(18, 21, 25, 0.45);
+  transition: all var(--transition-fast);
+  text-decoration: none;
+  position: relative;
+}
+
+.float-phone-btn svg {
+  width: 26px;
+  height: 26px;
+  fill: var(--color-accent);
+  transition: transform var(--transition-fast), fill var(--transition-fast);
+}
+
+.float-phone-btn:hover {
+  transform: scale(1.08) translateY(-2px);
+  background-color: var(--color-accent);
+  border-color: var(--color-accent);
+  box-shadow: 0 12px 30px rgba(197, 155, 95, 0.6);
+}
+
+.float-phone-btn:hover svg {
+  fill: #ffffff;
+  transform: rotate(15deg);
+}
+
+.float-phone-tooltip {
+  position: absolute;
+  right: 70px;
+  background: var(--color-primary);
+  color: #ffffff;
+  padding: 6px 14px;
+  border-radius: var(--radius-sm);
+  font-size: 0.82rem;
+  font-weight: 600;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--transition-fast);
+  box-shadow: var(--shadow-md);
+  border: 1px solid rgba(197, 155, 95, 0.35);
+}
+
+.float-phone-btn:hover .float-phone-tooltip {
+  opacity: 1;
+}
+
+
+.float-instagram-btn {
+  width: 60px;
+  height: 60px;
+  border-radius: var(--radius-full);
+  background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8px 25px rgba(214, 36, 159, 0.45);
+  transition: all var(--transition-fast);
+  text-decoration: none;
+  position: relative;
+}
+
+.float-instagram-btn svg {
+  width: 30px;
+  height: 30px;
+  fill: #ffffff;
+  transition: transform var(--transition-fast);
+}
+
+.float-instagram-btn:hover {
+  transform: scale(1.08) translateY(-2px);
+  box-shadow: 0 12px 30px rgba(214, 36, 159, 0.7);
+}
+
+.float-instagram-btn:hover svg {
+  transform: scale(1.08);
+}
+
+.float-whatsapp-btn {
+  width: 60px;
+  height: 60px;
+  border-radius: var(--radius-full);
+  background-color: var(--color-whatsapp);
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8px 25px rgba(37, 211, 102, 0.45);
+  transition: all var(--transition-fast);
+  text-decoration: none;
+  position: relative;
+}
+
+.float-whatsapp-btn svg {
+  width: 32px;
+  height: 32px;
+  fill: currentColor;
+}
+
+.float-whatsapp-btn:hover {
+  transform: scale(1.08) translateY(-2px);
+  box-shadow: 0 12px 30px rgba(37, 211, 102, 0.6);
+}
+
+.float-whatsapp-tooltip,
+.float-phone-tooltip,
+.float-tooltip {
+  display: none !important;
+}
+
+/* Mobil Sabit Alt Eylem Çubuğu (Yüksek Dönüşüm - 2 Net Eylem) */
+.mobile-bottom-bar {
+  display: none !important;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 66px;
+  background: rgba(18, 21, 25, 0.98);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  z-index: 9998;
+  box-shadow: 0 -8px 25px rgba(0, 0, 0, 0.35);
+  padding: 8px 8px;
+  gap: 6px;
+  box-sizing: border-box;
+}
+
+@media (max-width: 768px) {
+  .mobile-bottom-bar {
+    display: flex !important;
+    gap: 6px !important;
+    padding: 8px 8px !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    height: 66px !important;
+    box-sizing: border-box !important;
+    width: 100% !important;
+    left: 0 !important;
+    right: 0 !important;
+  }
+  .mobile-bottom-bar .mobile-bottom-btn {
+    flex: 1 1 0 !important;
+    min-width: 0 !important;
+    max-width: 33.33% !important;
+    height: 48px !important;
+    padding: 0 4px !important;
+    gap: 4px !important;
+    font-size: clamp(0.72rem, 2.7vw, 0.82rem) !important;
+    box-sizing: border-box !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+  .mobile-bottom-bar .mobile-bottom-btn span {
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    white-space: nowrap !important;
+  }
+  .mobile-bottom-bar .mobile-bottom-btn svg {
+    width: 17px !important;
+    height: 17px !important;
+    flex-shrink: 0 !important;
+  }
+  .floating-actions {
+    display: none !important;
+  }
+  body {
+    padding-bottom: 74px;
+  }
+}
+
+.mobile-bottom-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  height: 48px;
+  border-radius: var(--radius-md);
+  font-size: 0.88rem;
+  font-weight: 700;
+  text-decoration: none;
+  transition: transform var(--transition-fast);
+  padding: 0 10px;
+  white-space: nowrap;
+}
+
+.mobile-bottom-btn svg {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+  fill: currentColor;
+}
+
+.mobile-bottom-btn.btn-call-sticky {
+  background: #252b35;
+  color: #ffffff;
+  border: 1px solid rgba(197, 155, 95, 0.5);
+}
+
+.mobile-bottom-btn.btn-call-sticky:active {
+  background: #1b2027;
+}
+
+.mobile-bottom-btn.btn-wa-sticky {
+  background: var(--color-whatsapp);
+  color: #ffffff;
+  box-shadow: 0 4px 14px rgba(37, 211, 102, 0.4);
+}
+
+.mobile-bottom-btn.btn-wa-sticky:active {
+  background: #20bd5a;
+}
+
+.mobile-bottom-btn.btn-ig-sticky {
+  background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%) !important;
+  color: #ffffff !important;
+  border: 1px solid rgba(255, 255, 255, 0.25) !important;
+  box-shadow: 0 4px 14px rgba(225, 48, 108, 0.4) !important;
+}
+
+.mobile-bottom-btn.btn-ig-sticky svg {
+  fill: #ffffff !important;
+  color: #ffffff !important;
+}
+
+.mobile-bottom-btn.btn-ig-sticky span {
+  color: #ffffff !important;
+  font-weight: 700 !important;
+}
+
+.mobile-bottom-btn.btn-ig-sticky:active {
+  opacity: 0.92;
+  transform: scale(0.97);
+}
+
+/* Masaustunde sirali sag-sol, mobilde ise kesinlikle [Baslik/Metin -> Fotograf] sirasi */
+@media (min-width: 993px) {
+  .grid-2-col.desktop-reverse {
+    grid-template-columns: 0.85fr 1.15fr;
+  }
+  .grid-2-col.desktop-reverse > .section-text-col {
+    order: 2;
+  }
+  .grid-2-col.desktop-reverse > .section-media-col {
+    order: 1;
+  }
+}
+
+@media (max-width: 992px) {
+  .grid-2-col,
+  .grid-2-col.reverse,
+  .grid-2-col.desktop-reverse {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 24px !important;
+  }
+  /* Eger eski kodda reverse kalmissa mobilde gorseli metnin altina at */
+  .grid-2-col.reverse > div:first-child {
+    order: 2 !important;
+  }
+  .grid-2-col.reverse > div:last-child {
+    order: 1 !important;
+  }
+}
+
+/* Kapak Turu Gorsel Cercevesi ve Ayirt Edici Rozet */
+.door-sample-frame {
+  position: relative;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+  background: #f8fafc;
+}
+
+.door-sample-frame img {
+  width: 100%;
+  height: auto;
+  max-height: 480px;
+  object-fit: cover;
+  display: block;
+}
+
+.door-sample-badge {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  background: rgba(15, 23, 42, 0.85);
+  backdrop-filter: blur(8px);
+  color: #ffffff;
+  font-size: 0.78rem;
+  font-weight: 700;
+  padding: 6px 14px;
+  border-radius: 50px;
+  letter-spacing: 0.5px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  z-index: 2;
+}
+
 
 /* ==========================================================================
    RESPONSİVE GRID VE GOOGLE ADS YARDIMCILARI
@@ -3722,3 +4755,274 @@ ul, ol {
 
 
 
+
+
+/* ==========================================================================
+   ADS & PORTFOY ZENGIN PROJE GALERISI & DILIMLERI (100% RESPONSIVE)
+   ========================================================================== */
+.ads-conversion-banner {
+  background: linear-gradient(135deg, #161b24 0%, #0d1117 100%);
+  border: 1px solid rgba(197, 155, 63, 0.45);
+  border-radius: 18px;
+  padding: 30px 36px;
+  margin: 10px 0 20px 0;
+  color: #ffffff;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.28), 0 0 0 1px rgba(197, 155, 63, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 28px;
+  flex-wrap: wrap;
+}
+
+.banner-badge-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 8px;
+}
+
+.banner-gold-pill {
+  background: rgba(197, 155, 63, 0.16);
+  border: 1px solid rgba(197, 155, 63, 0.45);
+  color: #dfb76c;
+  padding: 5px 14px;
+  border-radius: 50px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.8px;
+  display: inline-flex;
+  align-items: center;
+  text-transform: uppercase;
+}
+
+.banner-sub-pill {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #e2e8f0;
+  padding: 5px 14px;
+  border-radius: 50px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+}
+
+.ads-conversion-text {
+  max-width: 680px;
+}
+
+.ads-conversion-text h3 {
+  font-family: var(--font-serif);
+  font-size: 1.65rem;
+  color: #ffffff;
+  margin: 0 0 8px 0;
+  line-height: 1.3;
+}
+
+.ads-conversion-text p {
+  color: #cbd5e1;
+  font-size: 0.96rem;
+  margin: 0;
+  line-height: 1.6;
+}
+
+.ads-conversion-actions {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+@media (max-width: 768px) {
+  .ads-conversion-banner {
+    padding: 24px 20px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+  }
+  .ads-conversion-actions {
+    width: 100%;
+  }
+  .ads-conversion-actions a {
+    flex: 1;
+    justify-content: center;
+    text-align: center;
+  }
+}
+
+.proje-gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(330px, 1fr));
+  gap: 28px;
+  margin-top: 32px;
+}
+
+@media (max-width: 768px) {
+  .proje-gallery-grid {
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .proje-gallery-grid {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+}
+
+.proje-card {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.35s ease;
+}
+
+.proje-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 40px rgba(15, 23, 42, 0.12);
+  border-color: rgba(197, 155, 63, 0.55);
+}
+
+.proje-card-media {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 11;
+  overflow: hidden;
+  background: #0f172a;
+}
+
+.proje-card-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.proje-card:hover .proje-card-media img {
+  transform: scale(1.06);
+}
+
+.proje-card-badge {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  background: rgba(15, 23, 42, 0.82);
+  backdrop-filter: blur(10px);
+  color: #ffffff;
+  font-size: 0.74rem;
+  font-weight: 700;
+  padding: 5px 13px;
+  border-radius: 50px;
+  letter-spacing: 0.5px;
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+  z-index: 2;
+}
+
+.proje-card-badge.gold {
+  background: linear-gradient(135deg, rgba(197, 155, 63, 0.95), rgba(161, 122, 36, 0.95));
+  border: 1px solid rgba(255, 230, 160, 0.4);
+  color: #ffffff;
+}
+
+.proje-card-body {
+  padding: 22px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  justify-content: space-between;
+}
+
+.proje-card-title {
+  font-size: 1.12rem;
+  font-weight: 700;
+  color: #0f172a;
+  margin: 0 0 8px 0;
+  line-height: 1.35;
+}
+
+.proje-card-desc {
+  font-size: 0.88rem;
+  color: #64748b;
+  line-height: 1.6;
+  margin: 0 0 16px 0;
+}
+
+.proje-card-features {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 18px;
+}
+
+.proje-card-tag {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  color: #475569;
+  font-size: 0.74rem;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 6px;
+}
+
+.proje-card-footer {
+  margin-top: auto;
+}
+
+.proje-card-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  padding: 12px 18px;
+  background: linear-gradient(135deg, #25d366 0%, #1ea952 100%);
+  color: #ffffff !important;
+  font-size: 0.88rem;
+  font-weight: 700;
+  border-radius: 10px;
+  text-decoration: none;
+  box-shadow: 0 3px 10px rgba(37, 211, 102, 0.25);
+  transition: all 0.3s ease;
+}
+
+.proje-card-btn:hover {
+  background: linear-gradient(135deg, #22bf5b 0%, #178a42 100%);
+  box-shadow: 0 6px 18px rgba(37, 211, 102, 0.4);
+  transform: translateY(-2px);
+}
+
+.proje-card-btn svg {
+  width: 18px;
+  height: 18px;
+  fill: currentColor;
+}
+
+/* Lightbox Modal & Navigasyon */
+.custom-gallery-lightbox {
+  animation: lbFadeIn 0.25s ease-out;
+}
+@keyframes lbFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+#lb-prev:hover, #lb-next:hover, #lb-close:hover {
+  background: rgba(255, 255, 255, 0.35) !important;
+  transform: translateY(-50%) scale(1.08) !important;
+}
+#lb-close:hover {
+  transform: scale(1.08) !important;
+}
+@media (max-width: 768px) {
+  #lb-prev { left: 8px !important; width: 44px !important; height: 44px !important; font-size: 26px !important; }
+  #lb-next { right: 8px !important; width: 44px !important; height: 44px !important; font-size: 26px !important; }
+}
