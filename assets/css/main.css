@@ -4280,26 +4280,205 @@ ul, ol {
   }
 }
 
-/* Sekme Paneli Kartı ve Mobil İyileştirmeler */
+/* Sekme Paneli Kartı (Başlık -> Fotoğraf -> Açıklama & Özellikler) */
 .spec-tab-card {
   background: #ffffff;
-  padding: 36px 40px;
+  padding: 40px 44px;
   border-radius: var(--radius-lg);
   border: 1px solid var(--color-border);
-  box-shadow: var(--shadow-sm);
+  box-shadow: 0 4px 24px rgba(18, 21, 25, 0.06);
+  max-width: 1040px;
+  margin: 0 auto;
+}
+
+.spec-tab-header {
+  margin-bottom: 20px;
+}
+
+.spec-tab-subtitle {
+  display: inline-block;
+  color: var(--color-accent-text, #875d1f);
+  font-weight: 700;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  margin-bottom: 6px;
+}
+
+.spec-tab-title {
+  font-family: var(--font-serif);
+  font-size: 2.1rem;
+  line-height: 1.25;
+  color: var(--color-primary);
+  margin: 0;
+}
+
+.spec-tab-media {
+  width: 100%;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  margin-bottom: 24px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+  background: #0f172a;
+}
+
+.spec-tab-media img {
+  width: 100%;
+  height: auto;
+  max-height: 480px;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  border-radius: var(--radius-md);
+  transition: transform 0.5s ease;
+}
+
+.spec-tab-media:hover img {
+  transform: scale(1.015);
+}
+
+.spec-tab-body {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.spec-tab-desc {
+  font-size: 1.05rem;
+  color: var(--color-text-muted);
+  line-height: 1.7;
+  margin: 0;
+}
+
+.spec-tab-features-box {
+  background: var(--color-bg-light, #faf8f5);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: 20px 24px;
+  margin: 4px 0 8px 0;
+}
+
+.spec-tab-features-title {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--color-primary);
+  margin-bottom: 12px;
+}
+
+.spec-tab-card .spec-feature-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 10px 20px;
+  margin: 0;
+}
+
+.spec-tab-actions {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+  align-items: center;
+  margin-top: 8px;
 }
 
 @media (max-width: 992px) {
   .spec-tab-card {
-    padding: 24px 20px;
+    padding: 26px 20px;
   }
-  .spec-tab-card .tab-image-col {
-    order: -1;
-    margin-bottom: 12px;
+  .spec-tab-title {
+    font-size: 1.65rem;
   }
-  .spec-tab-card .tab-image-col img {
-    max-height: 260px;
-    object-fit: cover;
+  .spec-tab-media {
+    margin-bottom: 20px;
+  }
+  .spec-tab-media img {
+    max-height: 320px;
+  }
+  .spec-tab-features-box {
+    padding: 16px 18px;
+  }
+  .spec-tab-card .spec-feature-list {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+}
+
+@media (max-width: 600px) {
+  .spec-tab-card {
+    padding: 20px 16px;
+  }
+  .spec-tab-title {
+    font-size: 1.35rem;
+  }
+  .spec-tab-media img {
+    max-height: 240px;
+  }
+  .spec-tab-actions {
+    flex-direction: column;
+    width: 100%;
+  }
+  .spec-tab-actions a {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+/* Kapak Türleri Detay Sayfası / Mutfak Dolapları Sıralama (Başlık -> Fotoğraf -> İçerik) */
+.door-detail-wrap {
+  max-width: 980px;
+  margin: 0 auto;
+}
+
+.door-detail-header {
+  margin-bottom: 24px;
+}
+
+.door-detail-header .section-subtitle {
+  margin-bottom: 10px;
+}
+
+.door-detail-header .section-title {
+  margin-bottom: 0;
+  text-align: left;
+}
+
+.door-detail-media {
+  margin-bottom: 28px;
+  width: 100%;
+}
+
+.door-detail-media .door-sample-frame {
+  max-height: 520px;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  background: #0f172a;
+}
+
+.door-detail-media .door-sample-frame img {
+  width: 100%;
+  height: auto;
+  max-height: 520px;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+}
+
+.door-detail-content {
+  width: 100%;
+}
+
+@media (max-width: 768px) {
+  .door-detail-header {
+    margin-bottom: 16px;
+  }
+  .door-detail-header .section-title {
+    font-size: 1.75rem;
+  }
+  .door-detail-media {
+    margin-bottom: 20px;
+  }
+  .door-detail-media .door-sample-frame img {
+    max-height: 320px;
   }
 }
 
