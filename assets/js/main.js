@@ -469,9 +469,9 @@ function initMutfakDolabinizApp() {
       const buttonLocation = detectLocation(target);
       const buttonType = detectButtonType(target, href);
 
-      // 1. MÜŞTERİNİN GA4 PANELİNDE DİREKT VE NET GÖRECEĞİ ÖZEL ETKİNLİKLER
+      // 1. MÜŞTERİNİN GA4 PANELİNDE VE GOOGLE ADS'TE GÖRECEĞİ ÖZEL DÖNÜŞÜM ETKİNLİKLERİ
       if (buttonType === 'whatsapp_mesaj') {
-        // A) Doğrudan 'whatsapp_click' Etkinliği (Ana tabloda gün/hafta bazında ayrı satırda çıkar)
+        // A) Doğrudan 'whatsapp_click' GA4 Etkinliği
         sendGtag('whatsapp_click', {
           event_category: 'WhatsApp',
           event_label: buttonLabel,
@@ -481,7 +481,14 @@ function initMutfakDolabinizApp() {
           page_path: window.location.pathname
         });
 
-        // B) Google Ads Dönüşüm Takibi (Mevcut generate_lead korunur)
+        // B) Google Ads Özel WhatsApp Dönüşüm Etkinliği (AW-10797187500)
+        sendGtag('conversion', {
+          'send_to': 'AW-10797187500/RBJ5CKbj77YdEKyDwJwo',
+          'value': 1.0,
+          'currency': 'TRY'
+        });
+
+        // C) Mevcut generate_lead korunur
         sendGtag('generate_lead', {
           event_category: 'Dönüşüm',
           event_label: buttonLabel,
@@ -490,7 +497,7 @@ function initMutfakDolabinizApp() {
           value: 1
         });
       } else if (buttonType === 'telefon_arama') {
-        // A) Doğrudan 'telefon_arama_click' Etkinliği (Ana tabloda gün/hafta bazında ayrı satırda çıkar)
+        // A) Doğrudan 'telefon_arama_click' GA4 Etkinliği
         sendGtag('telefon_arama_click', {
           event_category: 'Telefon Arama',
           event_label: buttonLabel,
@@ -501,7 +508,14 @@ function initMutfakDolabinizApp() {
           page_path: window.location.pathname
         });
 
-        // B) Google Ads Dönüşüm Takibi (Mevcut contact korunur)
+        // B) Google Ads Özel Telefon Arama Dönüşüm Etkinliği (AW-10797187500)
+        sendGtag('conversion', {
+          'send_to': 'AW-10797187500/QPfKCJC96bYdEKyDwJwo',
+          'value': 1.0,
+          'currency': 'TRY'
+        });
+
+        // C) Mevcut contact korunur
         sendGtag('contact', {
           event_category: 'Dönüşüm',
           event_label: buttonLabel,
@@ -510,7 +524,7 @@ function initMutfakDolabinizApp() {
           value: 1
         });
       } else if (buttonType === 'instagram_ziyaret') {
-        // A) Doğrudan 'instagram_click' Etkinliği (Ana tabloda gün/hafta bazında ayrı satırda çıkar)
+        // A) Doğrudan 'instagram_click' GA4 Etkinliği
         sendGtag('instagram_click', {
           event_category: 'Instagram',
           event_label: buttonLabel,
@@ -518,6 +532,13 @@ function initMutfakDolabinizApp() {
           button_text: buttonLabel,
           link_url: href || window.location.href,
           page_path: window.location.pathname
+        });
+
+        // B) Google Ads Özel Instagram Ziyaret Dönüşüm Etkinliği (AW-10797187500)
+        sendGtag('conversion', {
+          'send_to': 'AW-10797187500/VNj9CKHn77YdEKyDwJwo',
+          'value': 1.0,
+          'currency': 'TRY'
         });
       } else if (buttonType === 'katalog') {
         sendGtag('file_download', {
